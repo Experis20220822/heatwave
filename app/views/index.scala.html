@@ -5,20 +5,58 @@
 
 @import uk.gov.hmrc.govukfrontend.views.html.components._
 @import uk.gov.hmrc.govukfrontend.views.html.components.implicits._
+@import uk.gov.hmrc.govukfrontend.views.Implicits._
+@import views.html.SelectPage
 
-@this(layout: Layout)
+@this(layout: Layout, selectPage: SelectPage)
 
 @(pageTitle: String, heading: String, message: String)(implicit request: Request[_], messages: Messages)
 
+@import uk.gov.hmrc.play._
+
 @layout(pageTitle = pageTitle, isWelshTranslationAvailable = true) {
-    <h1 class="govuk-heading-xl">@{
-        Text(heading).asHtml
+    @*<h1 class="govuk-heading-xl">@{
+    Text(heading).asHtml
     }</h1>
     <p class="govuk-body">@{
-        Text(message).asHtml
-    }</p>
-    <p>@{
+    Text(message).asHtml
+    }</p>*@
+    @selectPage()
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+                What is your address?
+            </h1>
+        </legend>
 
-    }</p>
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="address-line-1">
+                Address line 1
+            </label>
+            <input class="govuk-input" id="address-line-1" name="address-line-1" type="text" autocomplete="address-line1">
+        </div>
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="address-line-2">
+                Address line 2 (optional)
+            </label>
+            <input class="govuk-input" id="address-line-2" name="address-line-2" type="text" autocomplete="address-line2">
+        </div>
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="address-town">
+                Town or city
+            </label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="address-town" type="text" autocomplete="address-level2">
+        </div>
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="address-postcode">
+                Postcode
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode" type="text" autocomplete="postal-code">
+        </div>
+
+    </fieldset>
 
 }
