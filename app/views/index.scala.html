@@ -1,5 +1,24 @@
-@()
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
 
-@main("Welcome to Play") {
-  <h1>Welcome to Play!</h1>
+@import uk.gov.hmrc.govukfrontend.views.html.components._
+@import uk.gov.hmrc.govukfrontend.views.html.components.implicits._
+
+@this(layout: Layout)
+
+@(pageTitle: String, heading: String, message: String)(implicit request: Request[_], messages: Messages)
+
+@layout(pageTitle = pageTitle, isWelshTranslationAvailable = true) {
+    <h1 class="govuk-heading-xl">@{
+        Text(heading).asHtml
+    }</h1>
+    <p class="govuk-body">@{
+        Text(message).asHtml
+    }</p>
+    <p>@{
+
+    }</p>
+
 }
