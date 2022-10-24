@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: football-app-configmap
+  name: heatwave-configmap
   namespace: default
 data:
   mongo_host: "mongodb"
