@@ -23,7 +23,7 @@ pipeline {
         stage('Push to ECR') {
             steps {
                 script {
-                    docker.withRegistry('https://219099013464.dkr.ecr.us-west-2.amazonaws.com/heatwave', 'ecr:us-west-2:spinnaker-admin-aws') {
+                    docker.withRegistry('https://219099013464.dkr.ecr.us-west-2.amazonaws.com', 'ecr:us-west-2:spinnaker-admin-aws') {
                         docker.image("${JOB_NAME}:${BUILD_ID}").push("${BUILD_ID}")
                     }
                 }
