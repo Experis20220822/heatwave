@@ -106,6 +106,11 @@ lazy val itSettings = Defaults.itSettings ++ Seq(
 
 libraryDependencies ++= AppDependencies()
 
+name := """heatwave"""
+organization := "com.xyzcorp"
+
+version := sys.env.getOrElse("BUILD_ID", "0.1")
+
 import com.typesafe.sbt.packager.docker.DockerChmodType
 
 dockerChmodType := DockerChmodType.UserGroupWriteExecute
