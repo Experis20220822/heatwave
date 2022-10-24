@@ -10,7 +10,7 @@ import play.api.data.Forms.{mapping, text}
 
 import javax.inject.{Inject, Singleton}
 import play.api.i18n.{I18nSupport, Lang}
-import play.api.mvc.{MessagesControllerComponents, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.filters.csrf.CSRF
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.register
@@ -27,11 +27,11 @@ import scala.concurrent.{ExecutionContext, Future}
     mapping("field" -> text)(Data.apply)(Data.unapply)
   )
 
-  def index() = Action { implicit request =>
-    Ok(view("Title", "Heading", "SomeText"))
+  def index(): Action[AnyContent] = Action { implicit request =>
+    Ok(view("Create an account", "Heading", "SomeText"))
   }
 
-  def textInput() = Action {implicit req =>
+  def textInput(): Action[AnyContent] = Action { implicit req =>
     Ok(textInputView("", "", ""))
   }
 }
