@@ -4,7 +4,7 @@ import scoverage.ScoverageKeys
 import uk.gov.hmrc.DefaultBuildSettings
 import uk.gov.hmrc.versioning.SbtGitVersioning.autoImport.majorVersion
 
-lazy val appName: String = "hmrc-test"
+lazy val appName: String = "heatwave"
 val silencerVersion = "1.6.0"
 
 addCommandAlias("fmt", "scalafmt;scalafmtSbt;test:scalafmt;it:scalafmt")
