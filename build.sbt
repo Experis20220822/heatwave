@@ -113,7 +113,7 @@ dockerExposedPorts ++= Seq(9000, 9001)
 
 dockerBaseImage := "eclipse-temurin:11"
 
-Docker/packageName := sys.env.getOrElse("JOB_NAME", "football-app")
+Docker/packageName := sys.env.getOrElse("JOB_NAME", "heatwave")
 
 Universal/javaOptions ++= Seq(
   // JVM memory tuning
