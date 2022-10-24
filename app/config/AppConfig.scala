@@ -19,7 +19,7 @@ trait AppConfig {
 
 }
 
-class CFConfig @Inject() (configuration: Configuration) extends AppConfig {
+class Config @Inject() (configuration: Configuration) extends AppConfig {
 
   private def loadConfigString(key: String): String =
     configuration
@@ -53,4 +53,6 @@ class CFConfig @Inject() (configuration: Configuration) extends AppConfig {
 
   private def configNotFoundError(key: String) =
     throw new RuntimeException(s"Could not find config key '$key'")
+
+  val cacheTtl: Int = configuration.get[Int]("mongodb.timeToLiveInSeconds")
 }
