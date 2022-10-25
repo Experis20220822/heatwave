@@ -9,6 +9,7 @@ GET     /sign-in                    controllers.LoginController.index()
 GET     /create-an-account          controllers.RegisterController.index(mode: Mode = NormalMode)
 POST    /account-created            controllers.RegisterController.submit(mode: Mode = NormalMode)
 GET     /account-created/:id        controllers.RegisterController.success(id: String)
+GET     /welcome                    controllers.WelcomeController.index()
 
 #GET     /user        controllers.UserController.userGet
 #POST    /user        controllers.UserController.userPost
