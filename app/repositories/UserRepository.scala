@@ -28,7 +28,7 @@ class UserRepository @Inject()(mongoDatabase: MongoDatabase) {
         u.username -> "username",
         u.password -> "password"
       )
-    ).map(r => r.getInsertedId.toString).headOption()
+    ).map(r => r.getInsertedId.asString().toString).headOption()
   }
 
   def documentToUser(d: Document): User = {
