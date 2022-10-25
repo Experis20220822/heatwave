@@ -12,7 +12,9 @@ import javax.inject.Inject
 import scala.concurrent.Future
 
 class InvoiceService @Inject() (invoiceRepository: InvoiceRepository) extends AsyncService {
-  override def add(invoice: Invoice) = invoiceRepository.add(invoice)
+  override def add(invoice: Invoice): Future[Option[String]] = invoiceRepository.add(invoice)
 
   override def get(id: String): Future[Option[String]] = ???
+
+  override def add(user: User): Future[Option[String]] = ???
 }
