@@ -16,12 +16,12 @@ class UserRepository @Inject()(mongoDatabase: MongoDatabase) {
 
   private def byId(id: String): Bson = Filters.equal("_id", id)
 
-  def getUser(id: String) = {
+  def get(id: String) = {
     collection.find(byId(id))
       .map(d => documentToUser(d)).toSingle().headOption()
   }
 
-  def addUser(u: User) = {
+  def add(u: User) = {
     collection.insertOne(
       Document(
         "email" -> u.email,
