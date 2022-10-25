@@ -14,7 +14,7 @@ import play.api.i18n.{I18nSupport, Lang}
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesRequest, Request}
 import play.filters.csrf.CSRF
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.form
+import views.html.user.form
 import services.UserService
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -51,8 +51,9 @@ import scala.util.Success
       }
     )
   }
-    def success(id: String) = Action { implicit request =>
-      Ok("/")
-    }
+
+  def success(id: String): Action[AnyContent] = Action { implicit request =>
+    Redirect(routes.RegisterController.index())
+  }
 
 }

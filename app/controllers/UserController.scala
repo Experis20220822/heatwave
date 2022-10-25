@@ -11,7 +11,7 @@ import javax.inject._
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
-import views.html.form
+import views.html.user.form
 
 //case class UserData(username: String, password: String)
 //class UserController @Inject()(mcc: MessagesControllerComponents, view: form) extends MessagesAbstractController(mcc) {

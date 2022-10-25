@@ -13,7 +13,7 @@ import play.api.i18n.{I18nSupport, Lang}
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.filters.csrf.CSRF
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.login
+import views.html.login.login
 import views.html.text_input
 
 import scala.concurrent.{ExecutionContext, Future}
