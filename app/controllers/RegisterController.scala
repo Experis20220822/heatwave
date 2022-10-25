@@ -20,10 +20,11 @@ import scala.concurrent.{ExecutionContext, Future}
 
 
 @Singleton class RegisterController @Inject()(val mcc: MessagesControllerComponents, view: form)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
-  case class UserData(username: String, password: String)
+  case class UserData(email: String, username: String, password: String)
 
   val userRegistration = Form[UserData](
     mapping(
+      "email" -> nonEmptyText,
       "username" -> nonEmptyText,
       "password" -> nonEmptyText
     )(UserData.apply)(UserData.unapply)
@@ -33,14 +34,14 @@ import scala.concurrent.{ExecutionContext, Future}
     Ok(view(userRegistration, mode))
   }
 
-  def submit(mode: Mode) = Action { implicit request: MessagesRequest[AnyContent] =>
-        userRegistration.bindFromRequest.fold(
-          formWithErrors => {
-            BadRequest(view(formWithErrors, mode))
-          },
-          userData => {
-            Redirect(routes.HomeController.index()).flashing("success" -> "user.created")
-          }
-        )
+  def submit(mode: Mode): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
+    userRegistration.bindFromRequest.fold(
+      formWithErrors => {
+        BadRequest(view(formWithErrors, mode))
+      },
+      userData => {
+        Redirect(routes.HomeController.index()).flashing("success" -> "user.created")
+      }
+    )
   }
 }

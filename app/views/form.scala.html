@@ -27,7 +27,15 @@
 
         @govukInput(
             InputViewModel(
-                field = form("Username"),
+            field = form("email"),
+            label = LabelViewModel("Email"),
+            )
+                .withWidth(Full)
+        )
+
+        @govukInput(
+            InputViewModel(
+                field = form("username"),
                 label = LabelViewModel("Username")
             )
                     .withWidth(Full)
