@@ -9,8 +9,6 @@ import models.User
 import org.mongodb.scala.bson.conversions.Bson
 import org.mongodb.scala.model.Filters
 import org.mongodb.scala.{Document, MongoDatabase}
-import org.mongodb.scala.model.Filters.equal
-
 import javax.inject.Inject
 
 class UserRepository @Inject()(mongoDatabase: MongoDatabase) {
