@@ -53,6 +53,7 @@ import scala.util.Success
   }
 
   def success(id: String): Action[AnyContent] = Action { implicit request =>
+    println(id)
     Redirect(routes.RegisterController.index())
   }
 
