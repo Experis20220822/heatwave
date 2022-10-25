@@ -4,8 +4,44 @@
  *@
 
 @import uk.gov.hmrc.govukfrontend.views.Aliases.Button
+@import viewmodels.InputWidth._
 
-@this(govukSelect: GovukSelect, govukButton: GovukButton, govukFieldset: GovukFieldset, govukInput: GovukInput)
+@this(
+  layout: views.html.Layout,
+  formHelper: FormWithCSRF,
+  govukErrorSummary: GovukErrorSummary,
+  govukSelect: GovukSelect,
+  govukButton: GovukButton,
+  govukFieldset: GovukFieldset,
+  govukInput: GovukInput,
+  govukTextarea: GovukTextarea,
+  govukBackLink: GovukBackLink
+)
+
+@(form: Form[_], mode: Mode)(implicit request: Request[_], messages: Messages)
+
+@layout(pageTitle = title(form, messages("example.title")), isWelshTranslationAvailable = true) {
+
+  @govukBackLink(BackLink(href = routes.InvoiceController.index().url))
+
+  @formHelper(action = routes.InvoiceController.index(), 'autoComplete -> "off") {
+
+    @if(form.errors.nonEmpty) {
+      @govukErrorSummary(ErrorSummaryViewModel(form))
+    }
+
+    <h1 class="govuk-heading-xl">@messages("example.heading")</h1>
+
+    @govukTextarea(
+      Textarea(
+        name = "customerDetails",
+        id = "customerDetails",
+        label = LabelViewModel("example.customerDetails")
+      )
+    )
+
+  }
+}
 
 <div class="govuk-width-container">
   <a href="/" class="govuk-back-link">Back</a>
