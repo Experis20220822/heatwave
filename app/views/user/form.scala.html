@@ -44,13 +44,15 @@
                     .withWidth(Full)
         )
 
-        @govukInput(
-            InputViewModel(
-                field = form("password"),
-                label = LabelViewModel("Password")
-            )
-                    .withWidth(Full)
-        )
+        @govukInput(Input(
+            id = "password",
+            name = "password",
+            label = Label(content = Text(messages("Password"))),
+            value = form("password").value,
+            errorMessage = form("password").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+            classes = "govuk-!-width-one-half",
+            inputType = "password"
+        ))
 
         @govukButton(
             ButtonViewModel(messages("site.continue"))

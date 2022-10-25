@@ -1,0 +1,24 @@
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
+
+@import uk.gov.hmrc.govukfrontend.views.Aliases.Button
+
+@this(
+ govukButton: GovukButton,
+ govukInput: GovukInput,
+ govukBackLink: GovukBackLink,
+ govukInsetText: GovukInsetText,
+ govukNotificationBanner: GovukNotificationBanner
+)
+
+@govukNotificationBanner(NotificationBanner(
+  content = HtmlContent("Successfully registered, feel free to browse the site"),
+  classes = "govuk-notification-banner--success"
+))
+
+<h1 class="govuk-heading-xl">Welcome</h1>
+
+@govukInsetText(InsetText(content = HtmlContent("Fill me in with some content")))
+
