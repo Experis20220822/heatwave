@@ -10,12 +10,13 @@
 <h1 class="govuk-heading-xl">Heatwave</h1>
 
 @govukInsetText(
-    InsetText(content = HtmlContent("Log in if you already have account with us, otherwise create an account"))
+    InsetText(content = HtmlContent("Sign In if you already have account with us, otherwise create an account"))
 )
 
 @govukButton(
     Button(isStartButton = true, content = HtmlContent("Sign In"), href = Some(routes.LoginController.index().url))
 )
+
 @govukButton(
     Button(isStartButton = true, content = HtmlContent("Create an account"), href = Some(routes.RegisterController.index().url))
 )
