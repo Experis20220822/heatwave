@@ -24,11 +24,11 @@ class UserRepository @Inject()(mongoDatabase: MongoDatabase) {
   def addUser(u: User) = {
     collection.insertOne(
       Document(
-        u.email -> "email",
-        u.username -> "username",
-        u.password -> "password"
+        "email" -> u.email,
+        "username" -> u.username,
+        "password" -> u.password
       )
-    ).map(r => r.getInsertedId.asString().toString).headOption()
+    ).map(r => r.getInsertedId.asObjectId().getValue.toString).headOption()
   }
 
   def documentToUser(d: Document): User = {
