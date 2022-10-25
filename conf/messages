@@ -1,5 +1,5 @@
 # https://www.playframework.com/documentation/latest/ScalaI18N
-service.name = Test
+service.name =
 
 site.back = Back
 site.remove = Remove
