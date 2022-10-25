@@ -1,0 +1,59 @@
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
+
+@import viewmodels.InputWidth._
+
+@this(
+    layout: views.html.Layout,
+    formHelper: FormWithCSRF,
+    govukErrorSummary: GovukErrorSummary,
+    govukInput: GovukInput,
+    govukButton: GovukButton,
+    govukBackLink: GovukBackLink
+)
+
+@(form: Form[_], mode: Mode)(implicit request: Request[_], messages: Messages)
+
+@layout(pageTitle = title(form, messages("Create")), isWelshTranslationAvailable = true) {
+
+    @govukBackLink(BackLink(href = routes.HomeController.index().url))
+
+    @formHelper(action = routes.RegisterController.submit(), 'autoComplete -> "off") {
+
+        @if(form.errors.nonEmpty) {
+            @govukErrorSummary(ErrorSummaryViewModel(form))
+        }
+
+        <h1 class="govuk-heading-xl">Create an account for service</h1>
+
+        @govukInput(
+            InputViewModel(
+            field = form("email"),
+            label = LabelViewModel("Email"),
+            )
+                .withWidth(Full)
+        )
+
+        @govukInput(
+            InputViewModel(
+                field = form("username"),
+                label = LabelViewModel("Username")
+            )
+                    .withWidth(Full)
+        )
+
+        @govukInput(
+            InputViewModel(
+                field = form("password"),
+                label = LabelViewModel("Password")
+            )
+                    .withWidth(Full)
+        )
+
+        @govukButton(
+            ButtonViewModel(messages("site.continue"))
+        )
+    }
+}
