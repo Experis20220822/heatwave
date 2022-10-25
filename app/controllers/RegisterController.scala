@@ -5,7 +5,7 @@
 
 package controllers
 
-import models.Mode
+import models.{Mode, User}
 import play.api.data.Form
 import play.api.data.Forms.{mapping, nonEmptyText, text}
 
@@ -15,11 +15,13 @@ import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesR
 import play.filters.csrf.CSRF
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.form
+import services.UserService
 
 import scala.concurrent.{ExecutionContext, Future}
+import scala.util.Success
 
 
-@Singleton class RegisterController @Inject()(val mcc: MessagesControllerComponents, view: form)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
+@Singleton class RegisterController @Inject()(val mcc: MessagesControllerComponents, view: form, userService: UserService)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
   case class UserData(email: String, username: String, password: String)
 
   val userRegistration = Form[UserData](
@@ -34,14 +36,23 @@ import scala.concurrent.{ExecutionContext, Future}
     Ok(view(userRegistration, mode))
   }
 
-  def submit(mode: Mode): Action[AnyContent] = Action { implicit request: MessagesRequest[AnyContent] =>
+  def submit(mode: Mode): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     userRegistration.bindFromRequest.fold(
       formWithErrors => {
-        BadRequest(view(formWithErrors, mode))
+        Future(BadRequest(view(formWithErrors, mode)))
       },
       userData => {
-        Redirect(routes.HomeController.index()).flashing("success" -> "user.created")
+        val insertedId = userService.addUser(User("", userData.email, userData.username, userData.password))
+        val result = insertedId.map {
+          case Some(str) => Redirect(routes.RegisterController.success(str))
+          case None => NotFound("")
+        }
+        result
       }
     )
   }
+    def success(id: String) = Action { implicit request =>
+      Ok("/")
+    }
+
 }

@@ -28,8 +28,7 @@ class UserRepository @Inject()(mongoDatabase: MongoDatabase) {
         u.username -> "username",
         u.password -> "password"
       )
-    )
-      .subscribe(r => println(s"Successful insert: $r"), t => t.printStackTrace(), () => println("Insert Complete"))
+    ).map(r => r.getInsertedId.toString).headOption()
   }
 
   def documentToUser(d: Document): User = {
