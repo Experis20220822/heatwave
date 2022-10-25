@@ -18,3 +18,6 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 # Invoice creator tool
 GET     /invoice-creator            controllers.InvoiceController.index()
+
+# Invoice creator tool
+GET     /index-logged-in            controllers.LoggedInController.index()

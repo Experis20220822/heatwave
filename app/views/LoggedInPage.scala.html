@@ -1,0 +1,31 @@
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
+
+@import uk.gov.hmrc.govukfrontend.views.Aliases.Button
+@import viewmodels.InputWidth._
+
+@this(
+  layout: views.html.Layout,
+  formHelper: FormWithCSRF,
+  govukErrorSummary: GovukErrorSummary,
+  govukSelect: GovukSelect,
+  govukButton: GovukButton,
+  govukFieldset: GovukFieldset,
+  govukInput: GovukInput,
+  govukTextarea: GovukTextarea,
+  govukBackLink: GovukBackLink
+)
+
+@(form: Form[_], mode: Mode)(implicit request: Request[_], messages: Messages)
+
+@layout(pageTitle = title(form, messages("example.title")), isWelshTranslationAvailable = true) {
+
+    @govukBackLink(BackLink(href = routes.InvoiceController.index().url))
+
+  }
+}
+
+
+
