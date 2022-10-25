@@ -24,7 +24,7 @@ import scala.util.Success
 @Singleton class RegisterController @Inject()(val mcc: MessagesControllerComponents, view: form, userService: UserService)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
   case class UserData(email: String, username: String, password: String)
 
-  val userRegistration = Form[UserData](
+  val userRegistration: Form[UserData] = Form(
     mapping(
       "email" -> nonEmptyText,
       "username" -> nonEmptyText,
