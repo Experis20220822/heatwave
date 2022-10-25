@@ -28,10 +28,6 @@ import scala.concurrent.{ExecutionContext, Future}
   )
 
   def index(): Action[AnyContent] = Action { implicit request =>
-    Ok(view("Login", "Heading", "SomeText"))
-  }
-
-  def textInput(): Action[AnyContent] = Action { implicit req =>
-    Ok(textInputView("", "", ""))
+    Ok(view("Sign In", "Heading", "SomeText"))
   }
 }
