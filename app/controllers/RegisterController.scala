@@ -5,29 +5,42 @@
 
 package controllers
 
+import models.Mode
 import play.api.data.Form
-import play.api.data.Forms.{mapping, text}
+import play.api.data.Forms.{mapping, nonEmptyText, text}
 
 import javax.inject.{Inject, Singleton}
 import play.api.i18n.{I18nSupport, Lang}
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesRequest, Request}
 import play.filters.csrf.CSRF
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.register
-import views.html.text_input
+import views.html.form
 
 import scala.concurrent.{ExecutionContext, Future}
 
 
-@Singleton class RegisterController @Inject()(val mcc: MessagesControllerComponents, view: register, textInputView: text_input)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
+@Singleton class RegisterController @Inject()(val mcc: MessagesControllerComponents, view: form)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
+  case class UserData(username: String, password: String)
 
-  case class Data(val field: String) {}
-
-  val form: Form[Data] = Form[Data](
-    mapping("field" -> text)(Data.apply)(Data.unapply)
+  val userRegistration = Form[UserData](
+    mapping(
+      "username" -> nonEmptyText,
+      "password" -> nonEmptyText
+    )(UserData.apply)(UserData.unapply)
   )
 
-  def index(): Action[AnyContent] = Action { implicit request =>
-    Ok(view("Create an account", "Heading", "SomeText"))
+  def index(mode: Mode): Action[AnyContent] = Action { implicit request =>
+    Ok(view(userRegistration, mode))
+  }
+
+  def submit(mode: Mode) = Action { implicit request: MessagesRequest[AnyContent] =>
+        userRegistration.bindFromRequest.fold(
+          formWithErrors => {
+            BadRequest(view(formWithErrors, mode))
+          },
+          userData => {
+            Redirect(routes.HomeController.index()).flashing("success" -> "user.created")
+          }
+        )
   }
 }
