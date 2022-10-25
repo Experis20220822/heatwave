@@ -42,7 +42,7 @@ import scala.util.Success
         Future(BadRequest(view(formWithErrors, mode)))
       },
       userData => {
-        val insertedId = userService.addUser(User("", userData.email, userData.username, userData.password))
+        val insertedId = userService.add(User("", userData.email, userData.username, userData.password))
         val result = insertedId.map {
           case Some(str) => Redirect(routes.RegisterController.success(str))
           case None => NotFound("")
@@ -53,7 +53,6 @@ import scala.util.Success
   }
 
   def success(id: String): Action[AnyContent] = Action { implicit request =>
-    println(id)
     Redirect(routes.RegisterController.index())
   }
 
