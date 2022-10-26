@@ -26,3 +26,4 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 # Invoice creator tool
 GET     /invoice-creator            controllers.InvoiceController.index(mode: Mode = NormalMode)
 POST    /invoice-submitted          controllers.InvoiceController.submit(mode: Mode = NormalMode)
+GET     /invoice-submitted/:id      controllers.InvoiceController.success(id: String)

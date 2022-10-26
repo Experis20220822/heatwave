@@ -15,20 +15,19 @@ import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesR
 import play.filters.csrf.CSRF
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.text_input
-import views.html.invoice.InvoicePage
+import views.html.invoice._
 import services.InvoiceService
 import scala.concurrent.{ExecutionContext, Future}
-
 
 
 @Singleton class InvoiceController @Inject()(val mcc: MessagesControllerComponents, view: InvoicePage, invoiceService: InvoiceService)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
 
   case class Data(
-                  customerDetails: String,
-                  userDetails: String,
-                  invoiceItem: String,
-                  invoiceItemPrice: Int,
-                  vatNumber: Int
+                   customerDetails: String,
+                   userDetails: String,
+                   invoiceItem: String,
+                   invoiceItemPrice: Int,
+                   vatNumber: Int
                  )
 
   val form: Form[Data] = Form[Data](
@@ -51,13 +50,22 @@ import scala.concurrent.{ExecutionContext, Future}
         Future(BadRequest(view(formWithErrors, mode)))
       },
       invoiceData => {
-        val maybeIdString = invoiceService.add(Invoice("", invoiceData.customerDetails, invoiceData.userDetails, invoiceData.invoiceItem, invoiceData.invoiceItemPrice, invoiceData.vatNumber))
+        val newInvoiceData: Invoice = Invoice("", invoiceData.customerDetails, invoiceData.userDetails, invoiceData.invoiceItem, invoiceData.invoiceItemPrice, invoiceData.vatNumber)
+        val maybeIdString = invoiceService.add(newInvoiceData)
         val result = maybeIdString.map {
-          case Some(str) => Redirect(routes.RegisterController.success(str))
+          case Some(str) => Redirect(routes.InvoiceController.success(str))
           case None => NotFound("")
         }
         result
       }
     )
+  }
+
+  def success(id: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    val result = invoiceService.getInvoice(id).map {
+      case Some(invoice) => Ok(views.html.invoice.invoiceGenerated(invoice))
+      case None => NotFound("STFU")
+    }
+    result
   }
 }
