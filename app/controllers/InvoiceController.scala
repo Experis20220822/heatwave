@@ -20,15 +20,14 @@ import services.InvoiceService
 import scala.concurrent.{ExecutionContext, Future}
 
 
-
 @Singleton class InvoiceController @Inject()(val mcc: MessagesControllerComponents, view: InvoicePage, invoiceService: InvoiceService)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
 
   case class Data(
-                  customerDetails: String,
-                  userDetails: String,
-                  invoiceItem: String,
-                  invoiceItemPrice: Int,
-                  vatNumber: Int
+                   customerDetails: String,
+                   userDetails: String,
+                   invoiceItem: String,
+                   invoiceItemPrice: Int,
+                   vatNumber: Int
                  )
 
   val form: Form[Data] = Form[Data](
@@ -62,12 +61,11 @@ import scala.concurrent.{ExecutionContext, Future}
     )
   }
 
-  def success(id: String): Action[AnyContent] = Action.async { implicit request =>
-    invoiceService.getInvoice(id).map{
-      case Some(str) => Ok(views.html.invoice.invoiceGenerated(str))
+  def success(id: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    val result = invoiceService.getInvoice(id).map {
+      case Some(invoice) => Ok(views.html.invoice.invoiceGenerated(invoice))
+      case None => NotFound("STFU")
     }
+    result
   }
-
-
-
 }
