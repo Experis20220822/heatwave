@@ -24,7 +24,7 @@
 
 @govukInsetText(InsetText(content = HtmlContent("You must be 18 or over to submit a question.")))
 
-@govukButton(Button(isStartButton = true, content = HtmlContent("Start now"), href = Some(routes.QuestionController.index().url)))
+@govukButton(Button(content = HtmlContent("Start now"), href = Some(routes.QuestionController.creationIndex().url)))
 
 <h1 class="govuk-heading-m">What you need to know</h1>
 <p class="govuk-body">An independent polling organisation chooses a selection of questions to be asked.</p>
