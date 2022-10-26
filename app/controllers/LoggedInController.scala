@@ -16,7 +16,6 @@ import views.html.{LoggedInPage, text_input}
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.ExecutionContext
 
-
 @Singleton class LoggedInController @Inject()(val mcc: MessagesControllerComponents, view: LoggedInPage, textInputView: text_input)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
 
   case class Data(val field: String) {}
