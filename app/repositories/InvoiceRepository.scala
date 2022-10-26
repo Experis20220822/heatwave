@@ -7,6 +7,7 @@ package repositories
 import models.{Invoice, User}
 import org.mongodb.scala.bson.conversions.Bson
 import org.mongodb.scala.model.Filters
+import org.mongodb.scala.model.Filters.equal
 import org.mongodb.scala.{Document, MongoDatabase}
 
 import javax.inject.Inject
@@ -17,9 +18,9 @@ class InvoiceRepository @Inject()(mongoDatabase: MongoDatabase) {
   private def byId(id: String): Bson = Filters.equal("_id", id)
 
   def get(id: String) = {
-    collection.find(byId(id))
-      .map(d => documentToInvoice(d)).toSingle().headOption()
-  }
+    collection.find(equal("_id", id))
+      .map(d => documentToInvoice(d))
+  }.toSingle().headOption()
 
   def add(i: Invoice) = {
     collection.insertOne(

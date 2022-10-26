@@ -61,11 +61,12 @@ import scala.concurrent.{ExecutionContext, Future}
     )
   }
 
-  def success(id: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
-    val result = invoiceService.getInvoice(id).map {
-      case Some(invoice) => Ok(views.html.invoice.invoiceGenerated(invoice))
-      case None => NotFound("STFU")
-    }
-    result
+  def success(id: String): Action[AnyContent] = Action.async { implicit request =>
+    invoiceService
+      .getInvoice(id)
+      .map {
+        case Some(invoice) => Ok(views.html.invoice.invoiceGenerated(invoice))
+        case None => NotFound("Invoice not found")
+      }
   }
 }
