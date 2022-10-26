@@ -1,0 +1,49 @@
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
+
+@import uk.gov.hmrc.govukfrontend.views.Aliases.Button
+
+@this(
+    govukButton: GovukButton,
+    govukInput: GovukInput,
+    govukBackLink: GovukBackLink,
+    govukInsetText: GovukInsetText,
+    govukNotificationBanner: GovukNotificationBanner
+)
+
+<span class="govuk-caption-l">Guidance</span>
+<h1 class="govuk-heading-l">
+    Ask us a Question
+</h1>
+
+<h3 class="govuk-body">Submit a question for a public event. If your question is chosen, a minister will answer it during an event broadcast to the public.</h3>
+
+@govukInsetText(InsetText(content = HtmlContent("You must be 18 or over to submit a question.")))
+
+@govukButton(Button(isStartButton = true, content = HtmlContent("Start now"), href = Some(routes.QuestionController.index().url)))
+
+<h1 class="govuk-heading-m">What you need to know</h1>
+<p class="govuk-body">An independent polling organisation chooses a selection of questions to be asked.</p>
+<p class="govuk-body">You'll need to provide your:</p>
+<ul class="govuk-list govuk-list--bullet">
+    <li>name</li>
+    <li>email address</li>
+    <li>contact number</li>
+</ul>
+
+<h1 class="govuk-heading-m">If your question is chosen</h1>
+<p class="govuk-body">A government official will contact you within 3 days of submitting your question.</p>
+<p class="govuk-body">You’ll need to record a video of yourself asking your question to be shown during the public event.</p>
+<p class="govuk-body">Footage of the event will be available online afterwards. It may also be used by news services or websites.</p>
+
+<h1 class="govuk-heading-m">If your question is not chosen</h1>
+<p class="govuk-body">If the government does not contact you within 3 days, your question will not be used at the public event. A government official might contact you later to ask for your permission to use your question for other public events.</p>
+
+<h1 class="govuk-heading-m">For all submited questions</h1>
+<p class="govuk-body">Questions submitted can help inform the government on the subjects that most matter to the general public. We may therefore analyse anonymised questions that do not include any names and contact details, in order to better inform our future policies and communication.</p>
+<p class="govuk-body-s">Published 26 October</p>
+
+
+

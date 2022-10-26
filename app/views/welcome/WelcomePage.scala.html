@@ -18,7 +18,11 @@
   classes = "govuk-notification-banner--success"
 ))
 
-<h1 class="govuk-heading-xl">Welcome</h1>
+<h1 class="govuk-heading-l">Welcome</h1>
 
 @govukInsetText(InsetText(content = HtmlContent("Fill me in with some content")))
 
+<h1 class="govuk-heading-l">Have any questions?</h1>
+<p class="govuk-body-m">Feel free to use the button below to ask us a question</p>
+
+@govukButton(Button(isStartButton = true, content = HtmlContent("Continue"), href = Some(routes.QuestionController.index().url)))

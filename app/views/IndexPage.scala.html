@@ -7,15 +7,20 @@
 
 @this(govukButton: GovukButton, govukInsetText: GovukInsetText)
 
-<h1 class="govuk-heading-xl">Heatwave</h1>
+<h1 class="govuk-heading-l">Sign in to HMRC online services</h1>
+
+<p class="govuk-body-m">Once you've registered, you can sign in.</p>
 
 @govukInsetText(
-    InsetText(content = HtmlContent("Sign In if you already have account with us, otherwise create an account"))
+    InsetText(content = HtmlContent("This page is also available in Welsh (Cymraeg)."))
 )
 
 @govukButton(
     Button(isStartButton = true, content = HtmlContent("Sign In"), href = Some(routes.LoginController.index().url))
 )
+
+<h1 class="govuk-heading-l">If you do not have an account</h1>
+<p class="govuk-body-m">Use the button below to create an account with us</p>
 
 @govukButton(
     Button(isStartButton = true, content = HtmlContent("Create an account"), href = Some(routes.RegisterController.index().url))
