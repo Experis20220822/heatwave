@@ -22,7 +22,7 @@
 
 @layout(pageTitle = title(form, messages("Invoice")), isWelshTranslationAvailable = true) {
 
-    @govukBackLink(BackLink(href = routes.InvoiceController.index().url))
+    @govukBackLink(BackLink(href = routes.LoggedInController.index().url))
 
     @formHelper(action = routes.InvoiceController.submit(), 'autoComplete -> "off") {
 

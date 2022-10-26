@@ -25,7 +25,7 @@
 
 @layout(pageTitle = title(form, messages("Session")), isWelshTranslationAvailable = true) {
 
-    @govukBackLink(BackLink(href = routes.LoggedInController.index().url))
+    @govukBackLink(BackLink(href = routes.HomeController.index().url))
 
     <section class="hmrc-page-heading hmrc-internal-header govuk-!-margin-bottom-6">
         <h1 class="govuk-heading-l">Phu Tran</h1>
@@ -37,7 +37,7 @@
 @*    </section>*@
 
     <section>
-        <a class="govuk-link govuk-heading-s" href="#">Create an Invoice</a>
+        <a class="govuk-link govuk-heading-s" href="/invoice-creator">Create an Invoice</a>
         <p class="govuk-heading-s govuk-!-font-weight-regular">
             Simply fill in the required information and create an invoice on the spot. You can save, print or email it directly to your clients.
         </p>
