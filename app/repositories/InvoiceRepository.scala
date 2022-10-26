@@ -5,6 +5,8 @@
 
 package repositories
 import models.{Invoice, User}
+import org.bson.types.ObjectId
+import org.mongodb.scala.bson.BsonObjectId
 import org.mongodb.scala.bson.conversions.Bson
 import org.mongodb.scala.model.Filters
 import org.mongodb.scala.model.Filters.equal
@@ -18,7 +20,7 @@ class InvoiceRepository @Inject()(mongoDatabase: MongoDatabase) {
   private def byId(id: String): Bson = Filters.equal("_id", id)
 
   def get(id: String) = {
-    collection.find(equal("_id", id))
+    collection.find(equal("_id", BsonObjectId(id)))
       .map(d => documentToInvoice(d))
   }.toSingle().headOption()
 
@@ -36,6 +38,6 @@ class InvoiceRepository @Inject()(mongoDatabase: MongoDatabase) {
 
   def documentToInvoice(d: Document): Invoice = {
     Invoice(d("_id").toString, d("customerDetails").toString, d("userDetails").toString, d("invoiceItem").toString,
-      d("invoiceItemPrice").toString.toInt, d("vatNumber").toString.toInt)
+      d("invoiceItemPrice").asInt32().getValue, d("vatNumber").asInt32().getValue)
   }
 }
