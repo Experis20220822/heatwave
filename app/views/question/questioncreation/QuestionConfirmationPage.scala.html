@@ -1,0 +1,27 @@
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
+
+@import uk.gov.hmrc.govukfrontend.views.Aliases.Button
+
+@this(
+ govukButton: GovukButton,
+ govukInput: GovukInput,
+ govukBackLink: GovukBackLink,
+ govukInsetText: GovukInsetText,
+ govukNotificationBanner: GovukNotificationBanner,
+ govukPanel: GovukPanel,
+)
+
+@govukPanel(Panel(
+ content = HtmlContent("Your question has been submitted. A government official will contact you within 3 days if your question is chosen."),
+ classes = "govuk-!-margin-bottom-3"
+))
+
+<p class="govuk-body-m">We have sent you a confirmation email.</p>
+<h1 class="govuk-heading-m">What happens next</h1>
+<p class="govuk-body-m">We’ve sent your application to Hackney Electoral Register Office.</p>
+<p class="govuk-body-m">They will contact you either to confirm your registration, or to ask for more information..</p>
+
+@govukButton(Button(content = HtmlContent("Return to your account"), href = Some(routes.LoggedInController.index().url)))
