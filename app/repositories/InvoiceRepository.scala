@@ -26,7 +26,7 @@ class InvoiceRepository @Inject()(mongoDatabase: MongoDatabase) {
       Document(
         "customerDetails" -> i.customerDetails,
         "userDetails" -> i.userDetails,
-        "invoiceItem" -> i.invoiceIten,
+        "invoiceItem" -> i.invoiceItem,
         "invoiceItemPrice" -> i.invoiceItemPrice,
         "vatNumber" -> i.vatNumber,
       )

@@ -14,7 +14,8 @@ import play.api.i18n.{I18nSupport, Lang}
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesRequest, Request}
 import play.filters.csrf.CSRF
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.{InvoicePage, text_input}
+import views.html.text_input
+import views.html.invoice.InvoicePage
 import services.InvoiceService
 import scala.concurrent.{ExecutionContext, Future}
 
