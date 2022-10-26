@@ -11,12 +11,12 @@ import play.api.data.Forms.{mapping, text}
 import play.api.i18n.I18nSupport
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.{LoggedInPage, text_input}
+import views.html.logged.LoggedInPage
 
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.ExecutionContext
 
-@Singleton class LoggedInController @Inject()(val mcc: MessagesControllerComponents, view: LoggedInPage, textInputView: text_input)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
+@Singleton class LoggedInController @Inject()(val mcc: MessagesControllerComponents, view: LoggedInPage)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
 
   case class Data(val field: String) {}
 
