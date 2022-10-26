@@ -6,14 +6,14 @@
 @import uk.gov.hmrc.govukfrontend.views.html.components._
 @import uk.gov.hmrc.govukfrontend.views.html.components.implicits._
 @import uk.gov.hmrc.govukfrontend.views.Implicits._
-@import views.html.InvoicePage
+@import views.html.welcome.WelcomePage
 
-@this(layout: Layout, content: InvoicePage)
+@this(layout: Layout, content: WelcomePage)
 
 @(pageTitle: String, heading: String, message: String)(implicit request: Request[_], messages: Messages)
 
 @import uk.gov.hmrc.play._
 
 @layout(pageTitle = pageTitle, isWelshTranslationAvailable = true) {
- <!-- content() -->
+  @content()
 }

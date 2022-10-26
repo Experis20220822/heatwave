@@ -16,19 +16,19 @@ class UserRepository @Inject()(mongoDatabase: MongoDatabase) {
 
   private def byId(id: String): Bson = Filters.equal("_id", id)
 
-  def getUser(id: String) = {
+  def get(id: String) = {
     collection.find(byId(id))
       .map(d => documentToUser(d)).toSingle().headOption()
   }
 
-  def addUser(u: User) = {
+  def add(u: User) = {
     collection.insertOne(
       Document(
-        u.email -> "email",
-        u.username -> "username",
-        u.password -> "password"
+        "email" -> u.email,
+        "username" -> u.username,
+        "password" -> u.password
       )
-    ).map(r => r.getInsertedId.asString().toString).headOption()
+    ).map(r => r.getInsertedId.asObjectId().getValue.toString).headOption()
   }
 
   def documentToUser(d: Document): User = {

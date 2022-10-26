@@ -1,0 +1,102 @@
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
+
+@import uk.gov.hmrc.govukfrontend.views.Aliases.Button
+@import viewmodels.InputWidth._
+
+@this(
+        layout: views.html.Layout,
+        formHelper: FormWithCSRF,
+        govukErrorSummary: GovukErrorSummary,
+        govukButton: GovukButton,
+        govukInput: GovukInput,
+        govukTextarea: GovukTextarea,
+        govukBackLink: GovukBackLink,
+        govukInsetText: GovukInsetText,
+        govukFieldset: GovukFieldset
+)
+
+@(form: Form[_], mode: Mode)(implicit request: Request[_], messages: Messages)
+
+@layout(pageTitle = title(form, messages("Invoice")), isWelshTranslationAvailable = true) {
+
+    @govukBackLink(BackLink(href = routes.InvoiceController.index().url))
+
+    @formHelper(action = routes.InvoiceController.submit(), 'autoComplete -> "off") {
+
+        @if(form.errors.nonEmpty) {
+            @govukErrorSummary(ErrorSummaryViewModel(form))
+        }
+
+        <h1 class="govuk-heading-xl">@messages("Create an Invoice")</h1>
+
+        @govukInsetText(
+            InsetText(content = HtmlContent("A handy invoice creation tool"))
+        )
+        @if(form.errors.nonEmpty) {
+            @govukTextarea(
+                Textarea(
+                    name = "customerDetails",
+                    id = "customerDetails",
+                    label = LabelViewModel("Enter your customer name / address here"),
+                    errorMessage = Some(ErrorMessage(content = HtmlContent("This field must not be blank")))
+                )
+            )
+        }
+        @if(form.errors.isEmpty) {
+        @govukTextarea(
+            Textarea(
+                name = "customerDetails",
+                id = "customerDetails",
+                label = LabelViewModel("Enter your customer name / address here")
+            )
+        )
+        }
+        @if(form.errors.nonEmpty) {
+            @govukTextarea(
+                Textarea(
+                    name = "userDetails",
+                    id = "userDetails",
+                    label = LabelViewModel("Enter your business name / address here"),
+                    errorMessage = Some(ErrorMessage(content = HtmlContent("This field must not be blank")))
+                )
+            )
+        }
+        @if(form.errors.isEmpty) {
+            @govukTextarea(
+                Textarea(
+                    name = "userDetails",
+                    id = "userDetails",
+                    label = LabelViewModel("Enter your business name / address here")
+                )
+            )
+        }
+
+        @govukInput(
+            InputViewModel(
+                field = form("invoiceItem"),
+                label = LabelViewModel(messages("Service or item you're invoicing for"))
+            )
+        )
+
+        @govukInput(
+            InputViewModel(
+                field = form("invoiceItemPrice"),
+                label = LabelViewModel(messages("What is the cost in pounds?"))
+            )
+        )
+
+        @govukInput(
+            InputViewModel(
+                field = form("vatNumber"),
+                label = LabelViewModel(messages("Enter your VAT number (leave blank if not VAT registered)"))
+            )
+        )
+
+        @govukButton(
+            ButtonViewModel(messages("Create your invoice"))
+        )
+    }
+}

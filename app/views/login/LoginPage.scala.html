@@ -5,30 +5,34 @@
 
 @import uk.gov.hmrc.govukfrontend.views.Aliases.Button
 
-@this(govukButton: GovukButton, govukInput: GovukInput, govukBackLink: GovukBackLink)
+@this(
+    govukButton: GovukButton,
+    govukInput: GovukInput,
+    govukBackLink: GovukBackLink,
+    govukInsetText: GovukInsetText
+)
+
 @govukBackLink(BackLink(href = routes.HomeController.index().url))
 
-        <h1 class="govuk-heading-xl">Log In</h1>
-        <div class="govuk-inset-text">
-          Use the same details you used to register for the service.
-        </div>
+<h1 class="govuk-heading-xl">Sign In</h1>
 
-    <div class="govuk-form-group">
-      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-        Username
-      </label>
-      </h1>
-      <input class="govuk-input" id="event-name" name="event-name" type="text">
-    </div>
+@govukInsetText(InsetText(content = HtmlContent("Use the same details you used to register for the service.")))
 
-    <div class="govuk-form-group">
-      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-        Password
-      </label>
-      </h1>
-      <input class="govuk-input" id="event-name" name="event-name" type="text">
-    </div>
-    @govukButton(Button(href = Some("#"), content = HtmlContent("Sign In")))
+@govukInput(Input(
+    id = "username",
+    name = "username",
+    label = Label(content = Text("Username")),
+    classes = "govuk-!-width-one-half"
+))
+
+@govukInput(Input(
+    id = "password",
+    name = "password",
+    label = Label(content = Text("Password")),
+    classes = "govuk-!-width-one-half"
+))
+
+@govukButton(Button(href = Some("#"), content = HtmlContent("Sign In")))
 
 
 

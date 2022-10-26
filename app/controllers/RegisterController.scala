@@ -24,7 +24,7 @@ import scala.util.Success
 @Singleton class RegisterController @Inject()(val mcc: MessagesControllerComponents, view: form, userService: UserService)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
   case class UserData(email: String, username: String, password: String)
 
-  val userRegistration = Form[UserData](
+  val userRegistration: Form[UserData] = Form(
     mapping(
       "email" -> nonEmptyText,
       "username" -> nonEmptyText,
@@ -42,7 +42,7 @@ import scala.util.Success
         Future(BadRequest(view(formWithErrors, mode)))
       },
       userData => {
-        val insertedId = userService.addUser(User("", userData.email, userData.username, userData.password))
+        val insertedId = userService.add(User("", userData.email, userData.username, userData.password))
         val result = insertedId.map {
           case Some(str) => Redirect(routes.RegisterController.success(str))
           case None => NotFound("")
@@ -53,7 +53,7 @@ import scala.util.Success
   }
 
   def success(id: String): Action[AnyContent] = Action { implicit request =>
-    Redirect(routes.RegisterController.index())
+    Redirect(routes.WelcomeController.index())
   }
 
 }
