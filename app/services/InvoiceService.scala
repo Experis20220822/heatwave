@@ -5,7 +5,7 @@
 
 package services
 
-import models.{Invoice, User}
+import models.{Invoice, Questions, User}
 import repositories.{InvoiceRepository, UserRepository}
 
 import javax.inject.Inject
@@ -17,4 +17,6 @@ class InvoiceService @Inject() (invoiceRepository: InvoiceRepository) extends As
   override def get(id: String): Future[Option[String]] = ???
 
   override def add(user: User): Future[Option[String]] = ???
+
+  override def add(questions: Questions): Future[Option[String]] = ???
 }
