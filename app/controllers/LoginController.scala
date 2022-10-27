@@ -5,19 +5,16 @@
 
 package controllers
 
-import models.Mode
 import play.api.data.Form
 import play.api.data.Forms.{mapping, text}
-
-import javax.inject.{Inject, Singleton}
-import play.api.i18n.{I18nSupport, Lang}
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
-import play.filters.csrf.CSRF
+import play.api.i18n.I18nSupport
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import services.UserService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.login.login
 import views.html.logged.LoggedInPage
+import views.html.login.login
 
+import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 

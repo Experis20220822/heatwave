@@ -5,7 +5,7 @@
 
 package services
 
-import models.{Upload, Question, Invoice, User}
+import models.Upload
 
 import scala.concurrent.Future
 

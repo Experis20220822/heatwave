@@ -5,20 +5,17 @@
 
 package controllers
 
-import models.{Mode, Question, User}
+import models.{Mode, Question}
 import play.api.data.Form
-import play.api.data.Forms.{mapping, nonEmptyText, text}
-
-import javax.inject.{Inject, Singleton}
-import play.api.i18n.{I18nSupport, Lang}
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesRequest, Request}
-import play.filters.csrf.CSRF
+import play.api.data.Forms.{mapping, nonEmptyText}
+import play.api.i18n.I18nSupport
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesRequest}
 import services.QuestionService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.question.question
-import views.html.question.questioncreation.questionconfirmation
-import views.html.question.questioncreation.QuestionCreationPage
+import views.html.question.questioncreation.{QuestionCreationPage, questionconfirmation}
 
+import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 

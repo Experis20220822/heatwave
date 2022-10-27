@@ -5,20 +5,16 @@
 
 package controllers
 
-import models.{Invoice, Mode, NormalMode}
+import models.{Invoice, Mode}
+import play.api.data.Forms.{bigDecimal, mapping, nonEmptyText, number}
 import play.api.data._
-import play.api.data.Forms.{bigDecimal, longNumber, mapping, nonEmptyText, number, text}
-import play.api.data.validation.{Constraint, Invalid, Valid}
+import play.api.i18n.I18nSupport
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesRequest}
+import services.InvoiceService
+import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+import views.html.invoice._
 
 import javax.inject.{Inject, Singleton}
-import play.api.i18n.{I18nSupport, Lang}
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesRequest, Request}
-import play.filters.csrf.CSRF
-import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.text_input
-import views.html.invoice._
-import services.InvoiceService
-
 import scala.concurrent.{ExecutionContext, Future}
 
 

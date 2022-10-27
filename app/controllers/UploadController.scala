@@ -8,18 +8,14 @@ package controllers
 import models.{Mode, Upload}
 import play.api.data.Form
 import play.api.data.Forms.{mapping, text}
-
-import javax.inject.{Inject, Singleton}
-import play.api.i18n.{I18nSupport, Lang}
-import play.api.libs.Files
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesRequest, MultipartFormData, Request}
-import play.filters.csrf.CSRF
+import play.api.i18n.I18nSupport
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesRequest}
 import services.UploadService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.upload.upload
 import views.html.upload.check.check
+import views.html.upload.upload
 
-import java.nio.file.Paths
+import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 

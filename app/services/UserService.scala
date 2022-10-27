@@ -5,7 +5,7 @@
 
 package services
 
-import models.{Invoice, User}
+import models.User
 import repositories.UserRepository
 
 import javax.inject.Inject

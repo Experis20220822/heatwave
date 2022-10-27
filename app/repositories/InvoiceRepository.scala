@@ -4,8 +4,7 @@
  */
 
 package repositories
-import models.{Invoice, User}
-import org.bson.types.ObjectId
+import models.Invoice
 import org.mongodb.scala.bson.BsonObjectId
 import org.mongodb.scala.bson.conversions.Bson
 import org.mongodb.scala.model.Filters

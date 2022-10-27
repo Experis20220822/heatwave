@@ -3,9 +3,6 @@
  *
  *@
 
-@import uk.gov.hmrc.govukfrontend.views.Aliases.Button
-@import viewmodels.InputWidth._
-
 @this(
         layout: views.html.Layout,
         formHelper: FormWithCSRF,
@@ -20,102 +17,87 @@
 
 @(form: Form[_], mode: Mode)(implicit request: Request[_], messages: Messages)
 
-@layout(pageTitle = title(form, messages("Invoice")), isWelshTranslationAvailable = true) {
+    @layout(pageTitle = title(form, messages("Invoice")), isWelshTranslationAvailable = true) {
 
-    @govukBackLink(BackLink(href = routes.LoginController.index().url))
+        @govukBackLink(BackLink(href = routes.LoginController.index().url))
 
-    @formHelper(action = routes.InvoiceController.submit(), 'autoComplete -> "off") {
+        @formHelper(action = routes.InvoiceController.submit(), 'autoComplete -> "off") {
 
-        @if(form.errors.nonEmpty) {
-            @govukErrorSummary(ErrorSummaryViewModel(form))
-        }
+            @if(form.errors.nonEmpty) {
+                @govukErrorSummary(ErrorSummaryViewModel(form))
+            }
 
-        <h1 class="govuk-heading-xl">@messages("Create an Invoice")</h1>
+            <h1 class="govuk-heading-xl">@messages("Create an Invoice")</h1>
 
-        @govukInsetText(
-            InsetText(content = HtmlContent("A handy invoice creation tool"))
-        )
-        @if(form.errors.nonEmpty) {
-            @govukTextarea(
-                Textarea(
-                    name = "customerDetails",
-                    id = "customerDetails",
-                    label = LabelViewModel("Enter your customer name / address here"),
-                    errorMessage = Some(ErrorMessage(content = HtmlContent("This field must not be blank")))
+            @govukInsetText(
+                InsetText(content = HtmlContent("A handy invoice creation tool"))
+            )
+            @if(form.errors.nonEmpty) {
+                @govukTextarea(
+                    Textarea(
+                        name = "customerDetails",
+                        id = "customerDetails",
+                        label = LabelViewModel("Enter your customer name / address here"),
+                        errorMessage = Some(ErrorMessage(content = HtmlContent("This field must not be blank")))
+                    )
+                )
+            }
+            @if(form.errors.isEmpty) {
+                @govukTextarea(
+                    Textarea(
+                        name = "customerDetails",
+                        id = "customerDetails",
+                        label = LabelViewModel("Enter your customer name / address here")
+                    )
+                )
+            }
+            @if(form.errors.nonEmpty) {
+                @govukTextarea(
+                    Textarea(
+                        name = "userDetails",
+                        id = "userDetails",
+                        label = LabelViewModel("Enter your business name / address here"),
+                        errorMessage = Some(ErrorMessage(content = HtmlContent("This field must not be blank")))
+                    )
+                )
+            }
+            @if(form.errors.isEmpty) {
+                @govukTextarea(
+                    Textarea(
+                        name = "userDetails",
+                        id = "userDetails",
+                        label = LabelViewModel("Enter your business name / address here")
+                    )
+                )
+            }
+
+            @govukInput(
+                InputViewModel(
+                    field = form("invoiceItem"),
+                    label = LabelViewModel(messages("Service or item you're invoicing for"))
                 )
             )
-        }
-        @if(form.errors.isEmpty) {
-        @govukTextarea(
-            Textarea(
-                name = "customerDetails",
-                id = "customerDetails",
-                label = LabelViewModel("Enter your customer name / address here")
-            )
-        )
-        }
-        @if(form.errors.nonEmpty) {
-            @govukTextarea(
-                Textarea(
-                    name = "userDetails",
-                    id = "userDetails",
-                    label = LabelViewModel("Enter your business name / address here"),
-                    errorMessage = Some(ErrorMessage(content = HtmlContent("This field must not be blank")))
-                )
-            )
-        }
-        @if(form.errors.isEmpty) {
-            @govukTextarea(
-                Textarea(
-                    name = "userDetails",
-                    id = "userDetails",
-                    label = LabelViewModel("Enter your business name / address here")
-                )
-            )
-        }
 
-        @govukInput(
-            InputViewModel(
-                field = form("invoiceItem"),
-                label = LabelViewModel(messages("Service or item you're invoicing for"))
-            )
-        )
-
-@*//        @govukInput(*@
-@*//            InputViewModel(*@
-@*//                field = form("invoiceItemPrice"),*@
-@*//                label = LabelViewModel(messages("What is the cost in pounds?"))*@
-@*//            )*@
-@*//        )*@
-
-        <div class="govuk-form-group">
-@*            <h1 class="govuk-label-wrapper">*@
+            <div class="govuk-form-group">
+                @* <h1 class="govuk-label-wrapper">*@
                 <label class="govuk-label" for="invoiceItemPrice">
-                What is the invoice amount in pounds (before VAT)?
-            </label>
-@*            </h1>*@
-            <div class="govuk-input__wrapper">
-                <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                <input class="govuk-input govuk-input--width-5" id="invoiceItemPrice" name="invoiceItemPrice" type="text" spellcheck="false">
+                    What is the invoice amount in pounds (before VAT)?
+                </label>
+                @* </h1>*@
+                <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                    <input class="govuk-input govuk-input--width-5" id="invoiceItemPrice" name="invoiceItemPrice" type="text" spellcheck="false">
+                </div>
             </div>
-        </div>
+             <div class="govuk-form-group">
+                <label class="govuk-label" for="vatNumber">
+                    Enter your VAT number
+                </label>
+                <input class="govuk-input govuk-input--width-10" id="vatNumber" name="vatNumber" type="text">
+            </div>
 
-@*//        @govukInput(*@
-@*//            InputViewModel(*@
-@*//                field = form("vatNumber"),*@
-@*//                label = LabelViewModel(messages("Enter your VAT number"))*@
-@*//            )*@
-@*//        )*@
-
-        <div class="govuk-form-group">
-            <label class="govuk-label" for="vatNumber">
-                Enter your VAT number
-            </label>
-            <input class="govuk-input govuk-input--width-10" id="vatNumber" name="vatNumber" type="text">
-        </div>
-
-        @govukButton(
-            ButtonViewModel(messages("Create your invoice"))
-        )
+            @govukButton(
+                ButtonViewModel(messages("Create your invoice"))
+            )
+        }
     }
-}
