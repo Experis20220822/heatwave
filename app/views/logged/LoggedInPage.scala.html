@@ -21,14 +21,14 @@
 )
 
 
-@(form: Form[_], mode: Mode)(implicit request: Request[_], messages: Messages)
+@(form: Form[_], username: String)(implicit request: Request[_], messages: Messages)
 
 @layout(pageTitle = title(form, messages("Session")), isWelshTranslationAvailable = true) {
 
     @govukBackLink(BackLink(href = routes.HomeController.index().url))
 
     <section class="hmrc-page-heading hmrc-internal-header govuk-!-margin-bottom-6">
-        <h1 class="govuk-heading-l">Phu Tran</h1>
+        <h1 class="govuk-heading-l">@username</h1>
         <p class="hmrc-caption govuk-caption-xl">Account Home</p>
     </section>
 

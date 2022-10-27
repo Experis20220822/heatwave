@@ -23,8 +23,4 @@ import scala.concurrent.ExecutionContext
   val form: Form[Data] = Form[Data](
     mapping("field" -> text)(Data.apply)(Data.unapply)
   )
-
-  def index(): Action[AnyContent] = Action { implicit request =>
-    Ok(view(form, NormalMode))
-  }
 }

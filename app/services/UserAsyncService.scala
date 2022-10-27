@@ -13,4 +13,6 @@ trait UserAsyncService {
   def addUser(user: User): Future[Option[String]]
 
   def getUser(id: String): Future[Option[User]]
+
+  def getByName(name: String): Future[Option[User]]
 }

@@ -53,7 +53,7 @@ import scala.util.Success
   }
 
   def success(id: String): Action[AnyContent] = Action { implicit request =>
-    Redirect(routes.LoggedInController.index())
+    Redirect(routes.LoginController.login())
   }
 
 }
