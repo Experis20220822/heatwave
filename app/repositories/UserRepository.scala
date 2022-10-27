@@ -6,15 +6,17 @@
 package repositories
 
 import models.User
+import org.mongodb.scala.bson.BsonObjectId
 import org.mongodb.scala.bson.conversions.Bson
 import org.mongodb.scala.model.Filters
 import org.mongodb.scala.{Document, MongoDatabase}
+
 import javax.inject.Inject
 
 class UserRepository @Inject()(mongoDatabase: MongoDatabase) {
   val collection = mongoDatabase.getCollection("users")
 
-  private def byId(id: String): Bson = Filters.equal("_id", id)
+  private def byId(id: String): Bson = Filters.equal("_id", BsonObjectId(id))
 
   def get(id: String) = {
     collection.find(byId(id))
@@ -32,6 +34,6 @@ class UserRepository @Inject()(mongoDatabase: MongoDatabase) {
   }
 
   def documentToUser(d: Document): User = {
-    User(d("_id").toString, d("email").toString, d("username").toString, d("password").toString)
+    User(d("_id").asObjectId().getValue.toString, d("email").toString, d("username").toString, d("password").toString)
   }
 }
