@@ -25,9 +25,11 @@ https://github.com/hmrc/play-frontend-hmrc
 ## Accessibility Checks
 
 [WAVE](https://wave.webaim.org/report#/https://production.tiered-planet.net/heatwave)
-![Lighthouse SEO](https://github.com/Experis20220822/heatwave/blob/master/public/images/Wave.png?raw=true)
 
-LIGHTHOUSE ![Lighthouse SEO](https://github.com/Experis20220822/heatwave/blob/master/public/images/Lighthouse.png?raw=true)
+![Wave SEO](https://github.com/Experis20220822/heatwave/blob/master/public/images/Wave.png?raw=true)
+
+LIGHTHOUSE
+![Lighthouse SEO](https://github.com/Experis20220822/heatwave/blob/master/public/images/Lighthouse.png?raw=true)
 
 ## Deployment
 
@@ -36,7 +38,11 @@ To deploy this project run
 ```bash
   sbt run
 ```
+To run test
 
+```bash
+  sbt test
+```
 
 ## Documentation
 
