@@ -37,7 +37,7 @@ class InvoiceRepository @Inject()(mongoDatabase: MongoDatabase) {
   }
 
   def documentToInvoice(d: Document): Invoice = {
-    Invoice(d("_id").toString, d("customerDetails").toString, d("userDetails").toString, d("invoiceItem").toString,
+    Invoice(d("_id").toString, d("customerDetails").asString().getValue, d("userDetails").asString().getValue, d("invoiceItem").asString().getValue,
       d("invoiceItemPrice").asInt32().getValue, d("vatNumber").asInt32().getValue)
   }
 }

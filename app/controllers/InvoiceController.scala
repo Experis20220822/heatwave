@@ -50,7 +50,14 @@ import scala.concurrent.{ExecutionContext, Future}
         Future(BadRequest(view(formWithErrors, mode)))
       },
       invoiceData => {
-        val newInvoiceData: Invoice = Invoice("", invoiceData.customerDetails, invoiceData.userDetails, invoiceData.invoiceItem, invoiceData.invoiceItemPrice, invoiceData.vatNumber)
+        val newInvoiceData: Invoice = Invoice(
+          "",
+          invoiceData.customerDetails,
+          invoiceData.userDetails,
+          invoiceData.invoiceItem,
+          invoiceData.invoiceItemPrice,
+          invoiceData.vatNumber
+        )
         val maybeIdString = invoiceService.add(newInvoiceData)
         val result = maybeIdString.map {
           case Some(str) => Redirect(routes.InvoiceController.success(str))
