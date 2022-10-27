@@ -44,6 +44,7 @@ class HomeControllerSpec extends AnyFreeSpec with GuiceOneAppPerTest with Inject
 
       status(home) mustEqual OK
       contentType(home) mustEqual Some("text/html")
+      contentAsString(home) must include("Sign in to HMRC online services")
     }
 
     "render the index page from the application" in {
@@ -53,6 +54,7 @@ class HomeControllerSpec extends AnyFreeSpec with GuiceOneAppPerTest with Inject
 
       status(home) mustEqual OK
       contentType(home) mustEqual Some("text/html")
+      contentAsString(home) must include("Sign in to HMRC online services")
     }
   }
 
