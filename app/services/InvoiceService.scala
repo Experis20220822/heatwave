@@ -5,9 +5,8 @@
 
 package services
 
-import models.{Invoice, User}
-import org.mongodb.scala.Document
-import repositories.{InvoiceRepository, UserRepository}
+import models.Invoice
+import repositories.InvoiceRepository
 
 import javax.inject.Inject
 import scala.concurrent.Future

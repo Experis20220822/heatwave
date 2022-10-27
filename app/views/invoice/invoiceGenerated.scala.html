@@ -35,7 +35,6 @@
                                     <li><strong>VAT #:</strong> @invoice.vatNumber</li>
                                 </ul>
                             </div>
-
                         </div>
 
                         <div class="table-responsive">
@@ -53,9 +52,9 @@
                                         <td>
                                             <div><strong>@invoice.invoiceItem</strong></div>
                                         </td>
-                                        <td>£@("%,.2f".format(invoice.invoiceItemPrice.toDouble))</td>
-                                        <td>£@("%,.2f".format((invoice.invoiceItemPrice * 1.2) - invoice.invoiceItemPrice))</td>
-                                        <td>£@("%,.2f".format(invoice.invoiceItemPrice * 1.2))</td>
+                                        <td>£@("%,.2f".format(invoice.invoiceItemPrice.toDouble/100))</td>
+                                        <td>£@("%,.2f".format(((invoice.invoiceItemPrice.toDouble/100) * 1.2) - (invoice.invoiceItemPrice.toDouble)/100))</td>
+                                        <td>£@("%,.2f".format((invoice.invoiceItemPrice.toDouble/100) * 1.2))</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -79,9 +78,9 @@
 
                             <div class="col-sm-6 text-right">
                                 <ul class="list-unstyled">
-                                    <li><strong>Sub - Total Amount:</strong> £@("%,.2f".format(invoice.invoiceItemPrice.toDouble))</li>
-                                    <li><strong>VAT (20%):</strong> £@("%,.2f".format((invoice.invoiceItemPrice * 1.2) - invoice.invoiceItemPrice))</li>
-                                    <li><strong>Grand Total:</strong> £@("%,.2f".format(invoice.invoiceItemPrice * 1.2))</li>
+                                    <li><strong>Sub - Total Amount:</strong> £@("%,.2f".format(invoice.invoiceItemPrice.toDouble/100))</li>
+                                    <li><strong>VAT (20%):</strong> £@("%,.2f".format(((invoice.invoiceItemPrice.toDouble/100) * 1.2) - (invoice.invoiceItemPrice.toDouble/100)))</li>
+                                    <li><strong>Grand Total:</strong> £@("%,.2f".format((invoice.invoiceItemPrice.toDouble/100) * 1.2))</li>
                                 </ul>
                             </div>
                         </div>

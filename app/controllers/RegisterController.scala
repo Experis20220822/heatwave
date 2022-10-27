@@ -7,18 +7,15 @@ package controllers
 
 import models.{Mode, User}
 import play.api.data.Form
-import play.api.data.Forms.{mapping, nonEmptyText, text}
-
-import javax.inject.{Inject, Singleton}
-import play.api.i18n.{I18nSupport, Lang}
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesRequest, Request}
-import play.filters.csrf.CSRF
+import play.api.data.Forms.{mapping, nonEmptyText}
+import play.api.i18n.I18nSupport
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesRequest}
+import services.UserService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.user.form
-import services.UserService
 
+import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
-import scala.util.Success
 
 
 @Singleton class RegisterController @Inject()(val mcc: MessagesControllerComponents, view: form, userService: UserService)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {

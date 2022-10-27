@@ -17,6 +17,9 @@ POST    /question-created           controllers.QuestionController.submit(mode: 
 GET     /question-created/:id       controllers.QuestionController.success(id: String)
 GET     /question-confirmation      controllers.QuestionController.confirmation(mode: Mode = NormalMode)
 
+#GET     /user        controllers.UserController.userGet
+#POST    /user        controllers.UserController.userPost
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
@@ -24,3 +27,9 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET     /invoice-creator            controllers.InvoiceController.index(mode: Mode = NormalMode)
 POST    /invoice-submitted          controllers.InvoiceController.submit(mode: Mode = NormalMode)
 GET     /invoice-submitted/:id      controllers.InvoiceController.success(id: String)
+
+# Upload file
+GET     /file-upload                controllers.UploadController.index(mode: Mode = NormalMode)
+POST    /file-uploaded              controllers.UploadController.submit(mode: Mode = NormalMode)
+GET     /file-upload/:id            controllers.UploadController.success(id: String)
+GET     /file-upload-confirmation   controllers.UploadController.fileUploaded(mode: Mode = NormalMode)
