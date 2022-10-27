@@ -15,7 +15,7 @@ object AppDependencies {
     "org.typelevel"     %% "cats-core"                     % "2.7.0",
     "uk.gov.hmrc"       %% "play-conditional-form-mapping" % "1.11.0-play-28",
     "com.openhtmltopdf"  % "openhtmltopdf-pdfbox"          % "1.0.10",
-    "com.google.inject" % "guice" % "5.1.0"
+    "com.google.inject"  % "guice"                         % "5.1.0"
   )
 
   val test: Seq[ModuleID] = Seq(
