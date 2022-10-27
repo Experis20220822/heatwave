@@ -13,4 +13,6 @@ import scala.concurrent.Future
 
 class UserService @Inject()(userRepository: UserRepository) extends UserAsyncService {
   override def addUser(user: User): Future[Option[String]] = userRepository.add(user)
+
+  override def getUser(id: String): Future[Option[User]] = userRepository.get(id)
 }
