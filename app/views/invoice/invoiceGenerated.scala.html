@@ -53,11 +53,10 @@
                                         <td>
                                             <div><strong>@invoice.invoiceItem</strong></div>
                                         </td>
-                                        <td>£@invoice.invoiceItemPrice</td>
-                                        <td>£3.78</td>
-                                        <td>£23,78</td>
+                                        <td>£@("%,.2f".format(invoice.invoiceItemPrice.toDouble))</td>
+                                        <td>£@("%,.2f".format((invoice.invoiceItemPrice * 1.2) - invoice.invoiceItemPrice))</td>
+                                        <td>£@("%,.2f".format(invoice.invoiceItemPrice * 1.2))</td>
                                     </tr>
-
                                 </tbody>
                             </table>
                         </div>
@@ -68,21 +67,21 @@
                                 <h4><strong>Contact</strong> Details</h4>
                                 <p class="nomargin nopadding">
                                     <strong>Note:</strong>
-                                    Lid est laborum dolo rumes fugats.
+                                    We appreciate your business. Please contact us if you have any questions.
                                 </p><br><!-- no P margin for printing - use <br> instead -->
 
                                 <address>
-                                    Phone: 0800 565 2390 <br>
-                                    Fax: 0800 565 2390 <br>
-                                    Email: support@@yourname.com
+                                    Phone: 0800 666 6666 <br>
+                                    Fax: 0800 666 6669 <br>
+                                    Email: support@@heatwave.dev
                                 </address>
                             </div>
 
                             <div class="col-sm-6 text-right">
                                 <ul class="list-unstyled">
-                                    <li><strong>Sub - Total Amount:</strong> £2162.00</li>
-                                    <li><strong>VAT (£6):</strong> £12.0</li>
-                                    <li><strong>Grand Total:</strong> £1958.0</li>
+                                    <li><strong>Sub - Total Amount:</strong> £@("%,.2f".format(invoice.invoiceItemPrice.toDouble))</li>
+                                    <li><strong>VAT (20%):</strong> £@("%,.2f".format((invoice.invoiceItemPrice * 1.2) - invoice.invoiceItemPrice))</li>
+                                    <li><strong>Grand Total:</strong> £@("%,.2f".format(invoice.invoiceItemPrice * 1.2))</li>
                                 </ul>
                             </div>
                         </div>
