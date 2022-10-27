@@ -3,6 +3,8 @@ import sbt._
 object AppDependencies {
   import play.core.PlayVersion
 
+  val testContainersScalaVersion = "0.40.11"
+
   val compile: Seq[ModuleID] = Seq(
     play.sbt.PlayImport.ws,
     "uk.gov.hmrc"       %% "play-frontend-hmrc"            % "3.23.0-play-28",
@@ -30,7 +32,9 @@ object AppDependencies {
     "uk.gov.hmrc"            %% "http-verbs-test-play-28" % "14.5.0",
     "com.vladsch.flexmark"    % "flexmark-all"            % "0.62.2",
     "com.softwaremill.diffx" %% "diffx-scalatest-should"  % "0.7.1",
-    "org.jsoup"               % "jsoup"                   % "1.15.3"
+    "org.jsoup"               % "jsoup"                   % "1.15.3",
+    "com.dimafeng"           %% "testcontainers-scala-scalatest" % testContainersScalaVersion,
+    "com.dimafeng"           %% "testcontainers-scala-mongodb"   % testContainersScalaVersion
   ).map(_ % "test, it")
 
   def apply(): Seq[ModuleID] = compile ++ test
