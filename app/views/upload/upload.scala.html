@@ -21,7 +21,7 @@
 
 @layout(pageTitle = title(form, messages("Upload file")), isWelshTranslationAvailable = true) {
 
-@govukBackLink(BackLink(href = routes.LoggedInController.index().url))
+@govukBackLink(BackLink(href = routes.LoginController.index().url))
 
 @formHelper(action = routes.UploadController.submit(), 'autoComplete -> "off") {
 
