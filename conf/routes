@@ -17,6 +17,11 @@ POST    /question-created           controllers.QuestionController.submit(mode: 
 GET     /question-created/:id       controllers.QuestionController.success(id: String)
 GET     /question-confirmation      controllers.QuestionController.confirmation(mode: Mode = NormalMode)
 
+GET     /file-upload                controllers.UploadController.index(mode: Mode = NormalMode)
+POST    /file-uploaded              controllers.UploadController.submit(mode: Mode = NormalMode)
+GET     /file-upload/:id            controllers.UploadController.success(id: String)
+GET     /file-upload-confirmation   controllers.UploadController.fileUploaded(mode: Mode = NormalMode)
+
 #GET     /user        controllers.UserController.userGet
 #POST    /user        controllers.UserController.userPost
 

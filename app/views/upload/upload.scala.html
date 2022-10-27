@@ -1,0 +1,58 @@
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
+
+@import viewmodels.InputWidth._
+
+@this(
+  layout: views.html.Layout,
+  formHelper: FormWithCSRF,
+  govukErrorSummary: GovukErrorSummary,
+  govukInput: GovukInput,
+  govukButton: GovukButton,
+  govukBackLink: GovukBackLink,
+  govukHint: GovukHint,
+  govukInsetText: GovukInsetText,
+  govukFileUpload: GovukFileUpload
+)
+
+@(form: Form[_], mode: Mode)(implicit request: Request[_], messages: Messages)
+
+@layout(pageTitle = title(form, messages("Upload file")), isWelshTranslationAvailable = true) {
+
+@govukBackLink(BackLink(href = routes.LoggedInController.index().url))
+
+@formHelper(action = routes.UploadController.submit(), 'autoComplete -> "off") {
+
+<h1 class="govuk-heading-l">Upload your first document</h1>
+
+@govukInsetText(InsetText(
+  content = HtmlContent(
+    Html("You can upload your receipts as scanned copies or photos of the originals")
+  )
+))
+
+@govukFileUpload(FileUpload(
+  id = "image",
+  name = "image",
+  label = Label(content = Text("Upload a file")),
+  classes = "govuk-!-width-one-half",
+))
+
+@govukInput(Input(
+  id = "description",
+  name = "description",
+  label = Label(content = Text("Description")),
+  classes = "govuk-!-width-one-half",
+  value = form("description").value
+))
+
+@govukButton(
+    ButtonViewModel(messages("Upload"))
+)}
+
+
+
+
+}

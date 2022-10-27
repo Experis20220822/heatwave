@@ -1,7 +1,7 @@
 @*
-* Copyright 2022 HM Revenue & Customs
-*
-*@
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
 
 @import uk.gov.hmrc.govukfrontend.views.Aliases.Button
 @import viewmodels._
@@ -46,6 +46,12 @@
         <a class="govuk-link govuk-heading-s" href=@Some(routes.QuestionController.index().url)>Got a Question?</a>
         <p class="govuk-heading-s govuk-!-font-weight-regular">
             Find out when you can expect to receive a reply from HMRC to a query or request you’ve made.
+        </p>
+    </section>
+    <section>
+        <a class="govuk-link govuk-heading-s" href=@Some(routes.UploadController.index().url)>Want to Upload Receipt?</a>
+        <p class="govuk-heading-s govuk-!-font-weight-regular">
+            Receipt is a document that you can upload to prove that you have paid for something.
         </p>
     </section>
     <section>
