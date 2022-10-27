@@ -6,13 +6,14 @@
 package models
 
 import org.junit.Before
+import org.mockito.{Mock, Mockito}
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 
 class UserSpec extends AnyFreeSpec with Matchers {
   "User" - {
     @Before
-    val result = User("anId", "email@domain.com", "", "")
+    val result = User("anId", "email@domain.com", "username", "password")
     "id must contain a non empty string" in {
         result.id mustEqual("anId")
     }
@@ -20,10 +21,10 @@ class UserSpec extends AnyFreeSpec with Matchers {
       result.email mustEqual("email@domain.com")
     }
     "username must contain a non empty string" in {
-      result.username mustEqual ("")
+      result.username mustEqual ("username")
     }
     "password must contain a non empty string" in {
-      result.password mustEqual ("")
+      result.password mustEqual ("password")
     }
   }
 }

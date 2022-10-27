@@ -12,7 +12,7 @@ import org.scalatest.matchers.must.Matchers
 class QuestionSpec extends AnyFreeSpec with Matchers {
   "Question" - {
     @Before
-    val result = Question("anId", "", "email@domain.com", "")
+    val result = Question("anId", "name", "email@domain.com", "question")
     "id must contain a non empty string" in {
         result.id mustEqual("anId")
     }
@@ -20,10 +20,10 @@ class QuestionSpec extends AnyFreeSpec with Matchers {
       result.email mustEqual("email@domain.com")
     }
     "username must contain a non empty string" in {
-      result.name mustEqual ("")
+      result.name mustEqual ("name")
     }
     "password must contain a non empty string" in {
-      result.question mustEqual ("")
+      result.question mustEqual ("question")
     }
   }
 }
