@@ -5,12 +5,12 @@
 
 package services
 
-import models.{Invoice, Questions}
+import models.{Invoice, Question}
 
 import scala.concurrent.Future
 
 trait QuestionAsyncService {
-  def add(question: Questions): Future[Option[String]]
+  def add(question: Question): Future[Option[String]]
 
-  def getQuestion(id: String): Future[Option[Questions]]
+  def getQuestion(id: String): Future[Option[Question]]
 }

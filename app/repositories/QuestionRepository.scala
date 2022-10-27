@@ -4,7 +4,7 @@
  */
 
 package repositories
-import models.{Questions, Invoice, User}
+import models.{Question, Invoice, User}
 import org.mongodb.scala.bson.conversions.Bson
 import org.mongodb.scala.model.Filters
 import org.mongodb.scala.{Document, MongoDatabase}
@@ -17,12 +17,12 @@ class QuestionRepository @Inject()(mongoDatabase: MongoDatabase) {
 
   private def byId(id: String): Bson = Filters.equal("_id", id)
 
-  def get(id: String): Future[Option[Questions]] = {
+  def get(id: String): Future[Option[Question]] = {
     collection.find(byId(id))
       .map(d => documentToQuestions(d)).toSingle().headOption()
   }
 
-  def add(i: Questions): Future[Option[String]] = {
+  def add(i: Question): Future[Option[String]] = {
     collection.insertOne(
       Document(
         "name" -> i.name,
@@ -32,7 +32,7 @@ class QuestionRepository @Inject()(mongoDatabase: MongoDatabase) {
     ).map(r => r.getInsertedId.asObjectId().getValue.toString).headOption()
   }
 
-  def documentToQuestions(d: Document): Questions = {
-    Questions(d("_id").toString, d("name").toString, d("email").toString, d("question").toString)
+  def documentToQuestions(d: Document): Question = {
+    Question(d("_id").toString, d("name").toString, d("email").toString, d("question").toString)
   }
 }

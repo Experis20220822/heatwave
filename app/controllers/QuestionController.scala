@@ -5,7 +5,7 @@
 
 package controllers
 
-import models.{Mode, Questions, User}
+import models.{Mode, Question, User}
 import play.api.data.Form
 import play.api.data.Forms.{mapping, nonEmptyText, text}
 
@@ -51,7 +51,7 @@ import scala.concurrent.{ExecutionContext, Future}
         Future(BadRequest(creationView(formWithErrors, mode)))
       },
       questionData => {
-        val insertedId = questionService.add(Questions("", questionData.name, questionData.email, questionData.question))
+        val insertedId = questionService.add(Question("", questionData.name, questionData.email, questionData.question))
         val result = insertedId.map {
           case Some(str) => Redirect(routes.QuestionController.success(str))
           case None => NotFound("")
