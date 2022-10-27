@@ -6,8 +6,9 @@
 package controllers
 
 import models.{Invoice, Mode, NormalMode}
-import play.api.data.Form
-import play.api.data.Forms.{mapping, nonEmptyText, number, text}
+import play.api.data._
+import play.api.data.Forms.{bigDecimal, longNumber, mapping, nonEmptyText, number, text}
+import play.api.data.validation.{Constraint, Invalid, Valid}
 
 import javax.inject.{Inject, Singleton}
 import play.api.i18n.{I18nSupport, Lang}
@@ -17,6 +18,7 @@ import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.text_input
 import views.html.invoice._
 import services.InvoiceService
+
 import scala.concurrent.{ExecutionContext, Future}
 
 
@@ -26,16 +28,21 @@ import scala.concurrent.{ExecutionContext, Future}
                    customerDetails: String,
                    userDetails: String,
                    invoiceItem: String,
-                   invoiceItemPrice: Int,
+                   invoiceItemPrice: BigDecimal,
                    vatNumber: Int
                  )
+
+//  val precisionOf2dp: Constraint[BigDecimal] = Constraint[BigDecimal] {
+//    case d: BigDecimal if d.precision != 2 => Valid
+//    case _ => Invalid("Must be a negative number.")
+//  }
 
   val form: Form[Data] = Form[Data](
     mapping(
       "customerDetails" -> nonEmptyText,
       "userDetails" -> nonEmptyText,
       "invoiceItem" -> nonEmptyText,
-      "invoiceItemPrice" -> number,
+      "invoiceItemPrice" -> bigDecimal,
       "vatNumber" -> number
     )(Data.apply)(Data.unapply)
   )
@@ -55,7 +62,7 @@ import scala.concurrent.{ExecutionContext, Future}
           invoiceData.customerDetails,
           invoiceData.userDetails,
           invoiceData.invoiceItem,
-          invoiceData.invoiceItemPrice,
+          (invoiceData.invoiceItemPrice*100).toInt,
           invoiceData.vatNumber
         )
         val maybeIdString = invoiceService.add(newInvoiceData)
