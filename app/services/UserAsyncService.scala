@@ -11,4 +11,6 @@ import scala.concurrent.Future
 
 trait UserAsyncService {
   def addUser(user: User): Future[Option[String]]
+
+  def getUser(id: String): Future[Option[User]]
 }
