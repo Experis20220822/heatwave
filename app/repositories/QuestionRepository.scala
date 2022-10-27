@@ -4,7 +4,8 @@
  */
 
 package repositories
-import models.{Question, Invoice, User}
+import models.{Invoice, Question, User}
+import org.mongodb.scala.bson.BsonObjectId
 import org.mongodb.scala.bson.conversions.Bson
 import org.mongodb.scala.model.Filters
 import org.mongodb.scala.{Document, MongoDatabase}
@@ -15,7 +16,7 @@ import scala.concurrent.Future
 class QuestionRepository @Inject()(mongoDatabase: MongoDatabase) {
   val collection = mongoDatabase.getCollection("questions")
 
-  private def byId(id: String): Bson = Filters.equal("_id", id)
+  private def byId(id: String): Bson = Filters.equal("_id", BsonObjectId(id))
 
   def get(id: String): Future[Option[Question]] = {
     collection.find(byId(id))
@@ -33,6 +34,6 @@ class QuestionRepository @Inject()(mongoDatabase: MongoDatabase) {
   }
 
   def documentToQuestions(d: Document): Question = {
-    Question(d("_id").toString, d("name").toString, d("email").toString, d("question").toString)
+    Question(d("_id").asObjectId().getValue.toString, d("name").toString, d("email").toString, d("question").toString)
   }
 }

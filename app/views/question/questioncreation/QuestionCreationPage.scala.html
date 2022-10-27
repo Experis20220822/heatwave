@@ -20,7 +20,7 @@
 
     @layout(pageTitle = title(form, messages("Create")), isWelshTranslationAvailable = true) {
 
-    @govukBackLink(BackLink(href = routes.HomeController.index().url))
+    @govukBackLink(BackLink(href = routes.QuestionController.index().url))
 
 @formHelper(action = routes.QuestionController.submit(), 'autoComplete -> "off") {
 

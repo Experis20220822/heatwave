@@ -1,7 +1,7 @@
 @*
- * Copyright 2022 HM Revenue & Customs
- *
- *@
+* Copyright 2022 HM Revenue & Customs
+*
+*@
 
 @import uk.gov.hmrc.govukfrontend.views.Aliases.Button
 @import viewmodels._
@@ -32,24 +32,24 @@
         <p class="hmrc-caption govuk-caption-xl">Account Home</p>
     </section>
 
-@*    <section>*@
-@*        <h2 class="hmrc-internal-header__service-name">Information</h2>*@
-@*    </section>*@
+    @*    <section>*@
+    @*        <h2 class="hmrc-internal-header__service-name">Information</h2>*@
+    @*    </section>*@
 
     <section>
-        <a class="govuk-link govuk-heading-s" href="/invoice-creator">Create an Invoice</a>
+        <a class="govuk-link govuk-heading-s" href=@Some(routes.InvoiceController.index().url)>Create an Invoice</a>
         <p class="govuk-heading-s govuk-!-font-weight-regular">
             Simply fill in the required information and create an invoice on the spot. You can save, print or email it directly to your clients.
         </p>
     </section>
     <section>
-        <a class="govuk-link govuk-heading-s" href="/ask-a-question">Got a Question?</a>
+        <a class="govuk-link govuk-heading-s" href=@Some(routes.QuestionController.index().url)>Got a Question?</a>
         <p class="govuk-heading-s govuk-!-font-weight-regular">
             Find out when you can expect to receive a reply from HMRC to a query or request you’ve made.
         </p>
     </section>
     <section>
-        <a class="govuk-link govuk-heading-s" href="#">Live Chat</a>
+        <a class="govuk-link govuk-heading-s" href = @Some(routes.HomeController.index().url) >Live Chat</a>
         <p class="govuk-heading-s govuk-!-font-weight-regular">
             Our Live Chat service is here to answer your admissions queries. We are available Monday to Friday 10am to 4pm. Ask us live!        </p>
     </section>
