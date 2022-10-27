@@ -4,16 +4,17 @@
  */
 
 import com.google.inject._
-import config.AppConfig
-import controllers.HomeController
 import org.mongodb.scala.{MongoClient, MongoDatabase}
 import play.api.Configuration
-import views.html.index
-
-import java.lang.annotation.Target
 
 class Module extends AbstractModule {
   override def configure(): Unit = {
+    /*
+    * Provides a mongodb instance for injection
+    *
+    * @param configuration
+    * @returns a MongoDatabase instance
+    */
     @Provides
     def databaseProvider(configuration: Configuration): MongoDatabase = {
       val username = configuration.get[String]("mongo.username")
