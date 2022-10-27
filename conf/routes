@@ -2,23 +2,20 @@
 # This file defines all application routes (Higher priority routes first)
 # https://www.playframework.com/documentation/latest/ScalaRouting
 # ~~~~
-->         /hmrc-frontend                      hmrcfrontend.Routes
+->      /hmrc-frontend              hmrcfrontend.Routes
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index()
 GET     /sign-in                    controllers.LoginController.index()
 GET     /create-an-account          controllers.RegisterController.index(mode: Mode = NormalMode)
 POST    /account-created            controllers.RegisterController.submit(mode: Mode = NormalMode)
 GET     /account-created/:id        controllers.RegisterController.success(id: String)
-GET     /index-logged-in            controllers.LoggedInController.index()
+GET     /index-logged-in            controllers.LoginController.login()
 
 GET     /ask-a-question             controllers.QuestionController.index(mode: Mode = NormalMode)
 GET     /question-page              controllers.QuestionController.creationIndex(mode: Mode = NormalMode)
 POST    /question-created           controllers.QuestionController.submit(mode: Mode = NormalMode)
 GET     /question-created/:id       controllers.QuestionController.success(id: String)
 GET     /question-confirmation      controllers.QuestionController.confirmation(mode: Mode = NormalMode)
-
-#GET     /user        controllers.UserController.userGet
-#POST    /user        controllers.UserController.userPost
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

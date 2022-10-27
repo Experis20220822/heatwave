@@ -4,13 +4,19 @@
  *@
 
 @import uk.gov.hmrc.govukfrontend.views.Aliases.Button
+@import uk.gov.hmrc.govukfrontend.views.html.components._
+@import uk.gov.hmrc.govukfrontend.views.html.components.implicits._
+@import uk.gov.hmrc.govukfrontend.views.Implicits._
 
 @this(
-    govukButton: GovukButton,
-    govukInput: GovukInput,
-    govukBackLink: GovukBackLink,
-    govukInsetText: GovukInsetText
+        govukButton: GovukButton,
+        govukInput: GovukInput,
+        govukBackLink: GovukBackLink,
+        govukInsetText: GovukInsetText,
+        formHelper: FormWithCSRF
 )
+
+@(form: Form[_])(implicit request: Request[_], messages: Messages)
 
 @govukBackLink(BackLink(href = routes.HomeController.index().url))
 
@@ -18,24 +24,27 @@
 
 @govukInsetText(InsetText(content = HtmlContent("Use the same details you used to register for the service.")))
 
-@govukInput(Input(
-    id = "username",
-    name = "username",
-    label = Label(content = Text("Username")),
-    classes = "govuk-!-width-one-half"
-))
+@formHelper(action = routes.LoginController.login(), 'autoComplete -> "off") {
 
-@govukInput(Input(
-    id = "password",
-    name = "password",
-    label = Label(content = Text("Password")),
-    classes = "govuk-!-width-one-half",
-    inputType = "password",
-    hint = Some(Hint(content = Text("If you have forgotten your password, please contact the service team")))
-))
+    @govukInput(Input(
+        id = "username",
+        name = "username",
+        label = Label(content = Text("Username")),
+        classes = "govuk-!-width-one-half"
+    ))
 
+    @govukInput(Input(
+        id = "password",
+        name = "password",
+        label = Label(content = Text("Password")),
+        classes = "govuk-!-width-one-half",
+        inputType = "password",
+        hint = Some(Hint(content = Text("If you have forgotten your password, please contact the service team")))
+    ))
 
-@govukButton(Button(href = Some("#"), content = HtmlContent("Sign In")))
+    @govukButton(ButtonViewModel(content = HtmlContent("Sign In")))
+}
+
 
 
 

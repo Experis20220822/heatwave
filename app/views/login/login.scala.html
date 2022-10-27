@@ -10,10 +10,10 @@
 
 @this(layout: Layout, content: LoginPage)
 
-@(pageTitle: String, heading: String, message: String)(implicit request: Request[_], messages: Messages)
+@(form: Form[_])(implicit request: Request[_], messages: Messages)
 
 @import uk.gov.hmrc.play._
 
-@layout(pageTitle = pageTitle, isWelshTranslationAvailable = true) {
- @content()
+@layout(pageTitle = "", isWelshTranslationAvailable = true) {
+ @content(form)
 }
