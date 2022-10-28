@@ -24,14 +24,20 @@
                             <div class="col-md-6 col-sm-6 text-left">
                                 <h4><strong>Customer</strong> Details</h4>
                                 <ul class="list-unstyled">
-                                    <li><strong><pre>@invoice.customerDetails</pre></strong></li>
+                                    <li><pre><strong>@invoice.customerDetails</strong></pre></li>
+                                    <li><pre><strong>Invoice Reference Number:</strong> @{
+                                        import scala.util.hashing.MurmurHash3
+                                        val invoiceNumber: Int = MurmurHash3.stringHash(invoice.id)
+                                        if (invoiceNumber < 0) invoiceNumber * -1
+                                        else invoiceNumber
+                                    }</pre></li>
                                 </ul>
                             </div>
 
                             <div class="col-md-6 col-sm-6 text-right">
                                 <h4><strong>Invoice</strong> From</h4>
                                 <ul class="list-unstyled">
-                                    <li><strong><pre>@invoice.userDetails</pre></strong></li>
+                                    <li><pre><strong>@invoice.userDetails</strong></pre></li>
                                     <li><strong>VAT #:</strong> @invoice.vatNumber</li>
                                 </ul>
                             </div>
@@ -53,7 +59,7 @@
                                             <div><strong>@invoice.invoiceItem</strong></div>
                                         </td>
                                         <td>£@("%,.2f".format(invoice.invoiceItemPrice.toDouble/100))</td>
-                                        <td>£@("%,.2f".format(((invoice.invoiceItemPrice.toDouble/100) * 1.2) - (invoice.invoiceItemPrice.toDouble)/100))</td>
+                                        <td>£@("%,.2f".format(((invoice.invoiceItemPrice.toDouble/100) * 1.2) - invoice.invoiceItemPrice.toDouble/100))</td>
                                         <td>£@("%,.2f".format((invoice.invoiceItemPrice.toDouble/100) * 1.2))</td>
                                     </tr>
                                 </tbody>
