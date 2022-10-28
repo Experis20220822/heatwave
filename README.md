@@ -24,12 +24,13 @@ https://github.com/hmrc/play-frontend-hmrc
 
 ## Accessibility Checks
 
-[WAVE](https://wave.webaim.org/report#/https://production.tiered-planet.net/heatwave)
+### [WAVE](https://wave.webaim.org/report#/https://production.tiered-planet.net/heatwave)
 
-![Wave SEO](https://github.com/Experis20220822/heatwave/blob/master/public/images/Wave.png?raw=true)
+![<img src="https://github.com/Experis20220822/heatwave/blob/master/public/images/Wave.png?raw=true" width="250"](https://github.com/Experis20220822/heatwave/blob/master/public/images/Wave.png?raw=true)
 
-LIGHTHOUSE
-![Lighthouse SEO](https://github.com/Experis20220822/heatwave/blob/master/public/images/Lighthouse.png?raw=true)
+### [LIGHTHOUSE](https://pagespeed.web.dev/report?url=https%3A%2F%2Fproduction.tiered-planet.net%2Fheatwave&form_factor=desktop)
+
+![<img src="https://github.com/Experis20220822/heatwave/blob/master/public/images/Lighthouse.png?raw=true" width="250"/>](https://github.com/Experis20220822/heatwave/blob/master/public/images/Lighthouse.png?raw=true)
 
 ## Deployment
 
