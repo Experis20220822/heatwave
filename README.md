@@ -47,7 +47,7 @@ To run test
 
 ## Documentation
 
-[Documentation](https://linktodocumentation)
+[Documentation](https://github.com/Experis20220822/heatwave/wiki)
 
 
 ## Authors
