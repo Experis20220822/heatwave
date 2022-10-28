@@ -17,4 +17,6 @@ class UploadService @Inject()(uploadRepository: UploadRepository) extends Upload
   override def getFile(id: String): Future[Option[Upload]] = uploadRepository.get(id)
 
   override def getByFileName(image: String): Future[Option[Upload]] = uploadRepository.getByFileName(image)
+
+  override def getDescription(description: String): Future[Option[Upload]] = uploadRepository.getDescription(description)
 }

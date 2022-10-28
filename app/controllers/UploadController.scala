@@ -21,29 +21,29 @@ import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton class UploadController @Inject()(val mcc: MessagesControllerComponents, view: upload, nextPage: check, uploadService: UploadService)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
 
-  case class Data(image: String)
+  case class uploadData(image: String, description: String)
 
-  val formForUpload: Form[Data] = Form[Data](
-    mapping("image" -> text)(Data.apply)(Data.unapply)
+  val formForUpload: Form[uploadData] = Form(
+    mapping("image" -> text, "description" -> text)(uploadData.apply)(uploadData.unapply)
   )
 
-  def index(mode: Mode): Action[AnyContent] = Action { implicit request =>
-    Ok(view(formForUpload, mode))
+  def index(): Action[AnyContent] = Action { implicit request =>
+    Ok(view(formForUpload))
   }
 
-  def fileUploaded(mode: Mode): Action[AnyContent] = Action { implicit request =>
-    Ok(nextPage(formForUpload, mode, ""))
+  def fileUploaded(image: String, description: String): Action[AnyContent] = Action { implicit request =>
+    Ok(nextPage(formForUpload, image, description))
   }
 
   def submit(mode: Mode): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     formForUpload.bindFromRequest.fold(
       formWithErrors => {
-        Future(BadRequest(view(formWithErrors, mode)))
+        Future(BadRequest(view(formWithErrors)))
       },
       fileData => {
-        val insertedId = uploadService.addFile(Upload("", fileData.image))
+        val insertedId = uploadService.addFile(Upload("", fileData.image, fileData.description))
         val result = insertedId.map {
-          case Some(str) => Redirect(routes.UploadController.success(str))
+          case Some(str) => Redirect(routes.UploadController.success(str, fileData.image, fileData.description))
           case None => NotFound("")
         }
         result
@@ -51,8 +51,8 @@ import scala.concurrent.{ExecutionContext, Future}
     )
   }
 
-  def success(id: String): Action[AnyContent] = Action { implicit request =>
-    Redirect(routes.UploadController.fileUploaded())
+  def success(id: String, image: String, description: String): Action[AnyContent] = Action { implicit request =>
+    Redirect(routes.UploadController.fileUploaded(image, description))
   }
 
 

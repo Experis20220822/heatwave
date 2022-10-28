@@ -29,7 +29,7 @@ POST    /invoice-submitted          controllers.InvoiceController.submit(mode: M
 GET     /invoice-submitted/:id      controllers.InvoiceController.success(id: String)
 
 # Upload file
-GET     /file-upload                controllers.UploadController.index(mode: Mode = NormalMode)
+GET     /file-upload                controllers.UploadController.index()
 POST    /file-uploaded              controllers.UploadController.submit(mode: Mode = NormalMode)
-GET     /file-upload/:id            controllers.UploadController.success(id: String)
-GET     /file-upload-confirmation   controllers.UploadController.fileUploaded(mode: Mode = NormalMode)
+GET     /file-upload/:id            controllers.UploadController.success(id: String, image: String, description: String)
+GET     /file-upload-confirmation   controllers.UploadController.fileUploaded(image: String, description: String)

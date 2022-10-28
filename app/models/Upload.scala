@@ -5,6 +5,6 @@
 
 package models
 
-case class Upload(id: String, image: String)
+case class Upload(id: String, image: String, description: String)
 
 

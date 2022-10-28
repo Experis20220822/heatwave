@@ -17,7 +17,7 @@
  govukFileUpload: GovukFileUpload
 )
 
-@(form: Form[_], mode: Mode, image: String)(implicit request: Request[_], messages: Messages)
+@(form: Form[_], image: String, description: String)(implicit request: Request[_], messages: Messages)
 
 @layout(pageTitle = title(form, messages("Upload file")), isWelshTranslationAvailable = true) {
 
@@ -26,6 +26,7 @@
 @formHelper(action = routes.UploadController.submit(), 'autoComplete -> "off") {
 
 <img src="@image" alt="Uploaded image" />
+<p class="govuk-body">@description</p>
 
 <div class="govuk-form-group">
  <fieldset class="govuk-fieldset">
