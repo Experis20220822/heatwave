@@ -31,11 +31,36 @@ class InvoiceServiceSpec
 
   "InvoiceService" - {
 
-    "add an invoice to the database and retrieve it" in {
+    "add an invoice to the database" in {
       val client: MongoClient = MongoClient(container.container.getConnectionString)
       val db: MongoDatabase = client.getDatabase("heatwave")
       val collection: MongoCollection[Document] = db.getCollection("invoices")
       val myInvoice = Invoice("645b7bcc70660b7d096b7cfd", "customerDetails", "userDetails", "invoiceItem", 1 ,2)
+      val document = Document(
+        "customerDetails" -> myInvoice.customerDetails,
+        "userDetails" -> myInvoice.userDetails,
+        "invoiceItem" -> myInvoice.invoiceItem,
+        "invoiceItemPrice" -> myInvoice.invoiceItemPrice,
+        "vatNumber" -> myInvoice.vatNumber
+      )
+      val invoiceService = new InvoiceService(new InvoiceRepository(db))
+
+      invoiceService.add(myInvoice)
+
+      val result = collection.countDocuments().headOption()
+
+      result.map{
+        case Some(num) => num mustEqual 1
+        case _ => ()
+      }
+      result
+    }
+
+    "retrieve an invoice from the database" in {
+      val client: MongoClient = MongoClient(container.container.getConnectionString)
+      val db: MongoDatabase = client.getDatabase("heatwave")
+      val collection: MongoCollection[Document] = db.getCollection("invoices")
+      val myInvoice = Invoice("645b7bcc70660b7d096b7cfd", "customerDetails", "userDetails", "invoiceItem", 1, 2)
       val document = Document(
         "customerDetails" -> myInvoice.customerDetails,
         "userDetails" -> myInvoice.userDetails,
