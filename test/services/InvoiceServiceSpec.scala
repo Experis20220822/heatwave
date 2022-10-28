@@ -19,8 +19,6 @@ import services.InvoiceService
 import scala.concurrent.Await
 import scala.concurrent.ExecutionContext.Implicits.global
 
-object InvoiceServiceSpec {}
-
 class InvoiceServiceSpec
   extends AnyFreeSpec
     with ForAllTestContainer
