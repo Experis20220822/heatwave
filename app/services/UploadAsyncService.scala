@@ -15,4 +15,6 @@ trait UploadAsyncService {
   def getFile(id: String): Future[Option[Upload]]
 
   def getByFileName(image: String): Future[Option[Upload]]
+
+  def getDescription(description: String): Future[Option[Upload]]
 }
