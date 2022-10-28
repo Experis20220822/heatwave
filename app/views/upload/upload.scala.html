@@ -14,7 +14,7 @@
   govukBackLink: GovukBackLink,
   govukHint: GovukHint,
   govukInsetText: GovukInsetText,
-  govukFileUpload: GovukFileUpload
+  govukAccordion: GovukAccordion,
 )
 
 @(form: Form[_])(implicit request: Request[_], messages: Messages)
@@ -33,21 +33,32 @@
   )
 ))
 
+<h1 class="govuk-heading-l">Provide an image url</h1>
 @govukInput(Input(
   id = "image",
   name = "image",
-  label = Label(content = Text("Image Url")),
   classes = "govuk-!-width-one-half",
-  value = form("image").value
+  value = form("image").value,
+  hint = Some(Hint(content = Text("Enter the url of the image you want to upload"))),
 ))
 
-@govukInput(Input(
-  id = "description",
-  name = "description",
-  label = Label(content = Text("Comment")),
-  classes = "govuk-!-width-one-half",
-  value = form("description").value
-))
+<div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
+    <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="description">
+            Can you provide more detail?
+        </label>
+        </h1>
+        <div id="description" class="govuk-hint">
+            Do not include personal or financial information like your National Insurance number or credit card details.
+        </div>
+        <textarea class="govuk-textarea govuk-js-character-count" id="description" name="description" rows="5" aria-describedby="with-hint-info with-hint-hint" placeholder="Give us more information about your Receipt in this box."></textarea>
+    </div>
+
+    <div id="description" class="govuk-hint govuk-character-count__message">
+        You can enter up to 200 characters
+    </div>
+
+</div>
 
 @govukButton(
     ButtonViewModel(messages("Upload"))

@@ -32,7 +32,7 @@ import scala.concurrent.{ExecutionContext, Future}
   }
 
   def fileUploaded(image: String, description: String): Action[AnyContent] = Action { implicit request =>
-    Ok(nextPage(formForUpload, image, description))
+    Ok(nextPage(formForUpload, if (image.isEmpty) "http://www.macedonrangeshalls.com.au/wp-content/uploads/2017/10/image-not-found.png" else image, if (description.isEmpty) "No comment left." else description))
   }
 
   def submit(mode: Mode): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
