@@ -13,12 +13,15 @@ class UploadSpec extends AnyFreeSpec with Matchers {
 
   "Upload" - {
     @Before
-    val result = Upload("anId", "imageStr")
+    val result = Upload("anId", "imageStr", "description")
     "id must contain a non empty string" in {
       result.id mustEqual("anId")
     }
     "email must contain a non empty string" in {
       result.image mustEqual("imageStr")
+    }
+    "description must contain a non empty string" in {
+      result.description mustEqual ("description")
     }
   }
 }
