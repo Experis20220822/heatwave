@@ -30,4 +30,29 @@ https://github.com/hmrc/play-frontend-hmrc
 
 ### [LIGHTHOUSE](https://pagespeed.web.dev/report?url=https%3A%2F%2Fproduction.tiered-planet.net%2Fheatwave&form_factor=desktop)
 
-<img src="https://github.com/Experis20220822/heatwave/blob/master/public/images/Lighthouse.png?raw=true" width="250"/>]
+<img src="https://github.com/Experis20220822/heatwave/blob/master/public/images/Lighthouse.png?raw=true" width="250"/>
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  sbt run
+```
+To run test
+
+```bash
+  sbt test
+```
+
+## Documentation
+
+[Documentation](https://linktodocumentation)
+
+
+## Authors
+
+- [@Rob Gresham](https://www.github.com/ghousedev)
+- [@Ned Sakalauskis](https://www.github.com/Neozxc)
+- [@Stuart Raynor](https://www.github.com/MadStu)
+- [@Phu Tran](https://www.github.com/Phuuu)
