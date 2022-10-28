@@ -26,33 +26,8 @@ https://github.com/hmrc/play-frontend-hmrc
 
 ### [WAVE](https://wave.webaim.org/report#/https://production.tiered-planet.net/heatwave)
 
-![<img src="https://github.com/Experis20220822/heatwave/blob/master/public/images/Wave.png?raw=true" width="250"](https://github.com/Experis20220822/heatwave/blob/master/public/images/Wave.png?raw=true)
+<img src="https://github.com/Experis20220822/heatwave/blob/master/public/images/Wave.png?raw=true" width="250" />
 
 ### [LIGHTHOUSE](https://pagespeed.web.dev/report?url=https%3A%2F%2Fproduction.tiered-planet.net%2Fheatwave&form_factor=desktop)
 
-![<img src="https://github.com/Experis20220822/heatwave/blob/master/public/images/Lighthouse.png?raw=true" width="250"/>](https://github.com/Experis20220822/heatwave/blob/master/public/images/Lighthouse.png?raw=true)
-
-## Deployment
-
-To deploy this project run
-
-```bash
-  sbt run
-```
-To run test
-
-```bash
-  sbt test
-```
-
-## Documentation
-
-[Documentation](https://linktodocumentation)
-
-
-## Authors
-
-- [@Rob Gresham](https://www.github.com/ghousedev)
-- [@Ned Sakalauskis](https://www.github.com/Neozxc)
-- [@Stuart Raynor](https://www.github.com/MadStu)
-- [@Phu Tran](https://www.github.com/Phuuu)
+<img src="https://github.com/Experis20220822/heatwave/blob/master/public/images/Lighthouse.png?raw=true" width="250"/>]
