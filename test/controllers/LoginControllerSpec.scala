@@ -34,7 +34,7 @@ class LoginControllerSpec extends PlaySpec with GuiceOneAppPerTest with Results{
     GuiceApplicationBuilder().configure(Configuration(ConfigFactory.load("application.conf"))).build()
   }
 
-  "Invoice creation page" should {
+  "Login page GET" should {
     "render the service index" in {
       val controller = app.injector.instanceOf(classOf[LoginController])
       val result: Future[Result] = controller.index().apply(FakeRequest())

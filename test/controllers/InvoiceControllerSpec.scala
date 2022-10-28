@@ -34,7 +34,7 @@ class InvoiceControllerSpec extends PlaySpec with GuiceOneAppPerTest with Result
     GuiceApplicationBuilder().configure(Configuration(ConfigFactory.load("application.conf"))).build()
   }
 
-  "Invoice creation page" should {
+  "Invoice creation page GET" should {
     "render the service index" in {
       val controller = app.injector.instanceOf(classOf[InvoiceController])
       val result: Future[Result] = controller.index(NormalMode).apply(FakeRequest())

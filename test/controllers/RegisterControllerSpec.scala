@@ -34,7 +34,7 @@ class RegisterControllerSpec extends PlaySpec with GuiceOneAppPerTest with Resul
     GuiceApplicationBuilder().configure(Configuration(ConfigFactory.load("application.conf"))).build()
   }
 
-  "Registration page" should {
+  "Registration page GET" should {
     "should be valid" in {
       //val config = app.injector.instanceOf(classOf[Configuration])
       val controller = app.injector.instanceOf(classOf[RegisterController])
